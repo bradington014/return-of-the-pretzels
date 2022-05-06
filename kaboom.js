@@ -6,6 +6,6 @@ export const k = kaboom({
     height: 1641,
     font: "sinko",
     canvas: document.querySelector("#mycanvas"),
-    background: [ 255, 255, 255, ],
+    background: [('sapbackground.png')],
     global: true,
 });
