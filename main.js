@@ -17,5 +17,3 @@ scene('game', () => {
 });
 
 go('game');
-
-  
