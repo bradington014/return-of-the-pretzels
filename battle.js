@@ -5,22 +5,40 @@ scene("battle", ()=> {
    const health = 10
    const Phealth = 5
    const BSpeed = 700
-
+   const TIME_COUNT = 0
+   const KPOS = height()/9
 
    layers(['background', 'obj'], 'obj')
    add([ sprite("background", {width: width(), height: height()})
    ]);
 
 
-   function spawnBullet(p) {
+   const timer = add([
+    text('0'),
+    pos(50, 50),
+    scale(2),
+    layer('obj'),
+      {
+      time: TIME_COUNT,
+      },
+  ])
+  
+  timer.action (() => {
+    timer.time += dt()
+    timer.text = timer.time.toFixed(2)
+    
+    
+  })
+
+   function spawnBullet(p,s) {
     add([
-        rect(12, 48),
+        rect(24, 6),
         area(),
-        pos(p),
+        pos(p,s),
         origin("center"),
         color(127, 127, 255),
         outline(4),
-        move(0, BSpeed),
+        move(0, -BSpeed),
         cleanup(),
         // strings here means a tag
         "bullet",
@@ -28,88 +46,110 @@ scene("battle", ()=> {
 }
 
 onKeyPress("space", () => {
-    spawnBullet(width() /2, height() /2)
+    spawnBullet(father.pos.x, father.pos.y)
+    //father.pos.x, father.pos.y
 })
 
-// const father = add([
-//     sprite("father"),
-//     area(),
-//     pos(width() / 2, height() - 64),
-//     origin("center"),
-// ])
+const father = add([
+   // sprite("father"),
+    rect(width() /28, width() /28),
+    area(),
+    color("black"),
+    pos(width() - 25, height() / 2),
+    origin("center"),
+])
 
-// const wall = add([
-// sprite("wall"),
-// area(),
-// body(),
-// pos(width() / 2, height()),
-// origin("center"),
+const wall = add([
+//sprite("wall"),
+rect(50, height()),
+area(),
+//body(),
+pos(width() / 1.2, height() / 2),
+origin("center"),
 
-// ])
+])
 
 
-// const Lars = add([
-//     sprite("Lars"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Lars = add([
+    //sprite("Lars"),
+    rect(width()/ 28, width()/28),
+    color(0, 200, 300),
+    area(),
+    pos(width()/1.1, height()/2 - KPOS),
+    origin("center"),
+])
 
-// const Tex = add([
-//     sprite("Tex"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Tex = add([
+   // sprite("Tex"),
+     rect(width()/ 28, width()/28),
+    color(300, 0, 0),
+    area(),
+    pos(width()/1.1,height()/2 - 2*KPOS),
+    origin("center"),
+])
 
-// const Shelldon = add([
-//     sprite("Shelldon"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Shelldon = add([
+   // sprite("Shelldon"),
+    rect(width()/ 28, width()/28),
+    color(200, 200, 300),
+    area(),
+    pos(width()/1.1, height()/2 - 3*KPOS),
+    origin("center"),
+])
 
-// const Rainette = add([
-//     sprite("Rainette"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Rainette = add([
+   // sprite("Rainette"),
+    rect(width()/ 28, width()/28),
+    color(300, 100, 300),
+    area(),
+    pos(width()/1.1, height()/2 - 4*KPOS),
+    origin("center"),
+])
 
-// const Raina = add([
-//     sprite("Raina"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Raina = add([
+   // sprite("Raina"),
+    rect(width()/ 28, width()/28),
+    color(300, 300, 100),
+    area(),
+    pos(width()/1.1, height()/2 + KPOS),
+    origin("center"),
+])
 
-// const Ivy = add([
-//     sprite("Ivy"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Ivy = add([
+  //  sprite("Ivy"),
+    rect(width()/ 28, width()/28),
+    color(300, 100, 300),
+    area(),
+    pos(width()/1.1, height()/2 + 2*KPOS),
+    origin("center"),
+])
 
-// const Dwayne = add([
-//     sprite("Dwayne"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Dwayne = add([
+    //sprite("Dwayne"),
+    rect(width()/ 28, width()/28),
+    color(200, 200, 300),
+    area(),
+    pos(width()/1.1, height()/2),
+    origin("center"),
+])
 
-// const Shuihaizi = add([
-//     sprite("Shuihaizi"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Shuihaizi = add([
+   // sprite("Shuihaizi"),
+    rect(width()/ 28, width()/28),
+    color(300, 100, 100),
+    area(),
+    pos(width()/1.1, height()/2 + 3*KPOS),
+    origin("center"),
+])
 
-// const Bartholomew = add([
-//     sprite("Bartholomew"),
-//     area(),
-//     pos(0,0),
-//     origin("center"),
-// ])
+const Bartholomew = add([
+    //sprite("Bartholomew"),
+    rect(width()/ 28, width()/28),
+    color(100, 100, 100),
+    area(),
+    pos(width()/1.1, height()/2 + 4*KPOS),
+    origin("center"),
+])
 
 
 
