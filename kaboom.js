@@ -9,3 +9,4 @@ export const k = kaboom({
     background: [('sapbackground.png')],
     global: true,
 });
+
