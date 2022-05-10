@@ -8,6 +8,7 @@ scene("battle", ()=> {
    const TIME_COUNT = 0
    const KPOS = height()/9
    const KSCALE = height()/2500
+   const FMove = 300
 
    layers(['background', 'obj'], 'obj')
    add([ sprite("background", {width: width(), height: height()})
@@ -47,16 +48,16 @@ scene("battle", ()=> {
 }
 
 onKeyPress("up", () => {
-    father.move(0, -fatherSpeed)
-    if (father.pos.y < 0) {
-        father.pos.y = height()
+    
+    if (father.pos.y > 0 && father.pos.y < height() + FMove) {
+        father.move(0, -fatherSpeed)
     }
 })
 
 onKeyPress("down", () => {
-    father.move(0, fatherSpeed)
-    if (father.pos.y > height()) {
-        father.pos.y = 0
+   
+    if (father.pos.y < height()&& father.pos.y > 0 - FMove) {
+        father.move(0, fatherSpeed)
     }
 })
 
