@@ -87,81 +87,74 @@ origin("center"),
 
 
 const Lars = add([
-    //sprite("Lars"),
-    rect(width()/ 28, width()/28),
-    color(0, 200, 300),
+    sprite("Lars"),
+    // rect(width()/ 28, width()/28),
+    // color(0, 200, 300),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 - KPOS),
     origin("center"),
 ])
 
 const Tex = add([
-   // sprite("Tex"),
-     rect(width()/ 28, width()/28),
-    color(300, 0, 0),
+    sprite("Tex"),
+    scale(.25),
     area(),
     pos(width()/1.1,height()/2 - 2*KPOS),
     origin("center"),
 ])
 
 const Shelldon = add([
-   // sprite("Shelldon"),
-    rect(width()/ 28, width()/28),
-    color(200, 200, 300),
+    sprite("Shelldon"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 - 3*KPOS),
     origin("center"),
 ])
 
 const Rainette = add([
-   // sprite("Rainette"),
-    rect(width()/ 28, width()/28),
-    color(300, 100, 300),
+    sprite("Rainette"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 - 4*KPOS),
     origin("center"),
 ])
 
 const Raina = add([
-   // sprite("Raina"),
-    rect(width()/ 28, width()/28),
-    color(300, 300, 100),
+    sprite("Raina"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 + KPOS),
     origin("center"),
 ])
 
 const Ivy = add([
-  //  sprite("Ivy"),
-    rect(width()/ 28, width()/28),
-    color(300, 100, 300),
+    sprite("Ivy"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 + 2*KPOS),
     origin("center"),
 ])
 
 const Dwayne = add([
-    //sprite("Dwayne"),
-    rect(width()/ 28, width()/28),
-    color(200, 200, 300),
+    sprite("Dwayne"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2),
     origin("center"),
 ])
 
 const Shuihaizi = add([
-   // sprite("Shuihaizi"),
-    rect(width()/ 28, width()/28),
-    color(300, 100, 100),
+    sprite("Shuihaizi"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 + 3*KPOS),
     origin("center"),
 ])
 
 const Bartholomew = add([
-    //sprite("Bartholomew"),
-    rect(width()/ 28, width()/28),
-    color(100, 100, 100),
+    sprite("Bartholomew"),
+    scale(.25),
     area(),
     pos(width()/1.1, height()/2 + 4*KPOS),
     origin("center"),
