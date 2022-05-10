@@ -7,6 +7,7 @@ scene("battle", ()=> {
    const BSpeed = 700
    const TIME_COUNT = 0
    const KPOS = height()/9
+   const canShoot = true
 
    layers(['background', 'obj'], 'obj')
    add([ sprite("background", {width: width(), height: height()})
@@ -40,6 +41,7 @@ scene("battle", ()=> {
         outline(4),
         move(0, -BSpeed),
         cleanup(),
+        wait(0.25, () => canShoot = true),
         // strings here means a tag
         "bullet",
     ])
@@ -60,7 +62,11 @@ onKeyDown("down", () => {
 })
 
 onKeyPress("space", () => {
-    spawnBullet(father.pos.x, father.pos.y)
+    if (canShoot = true) {
+        spawnBullet(father.pos.x, father.pos.y),
+        canShoot = false
+        } 
+  
     //father.pos.x, father.pos.y
 })
 
