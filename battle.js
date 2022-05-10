@@ -1,12 +1,13 @@
 
 scene("battle", ()=> {
-   const fatherSpeed = 300
+   const fatherSpeed = height()*7
    const pretzelSpeed = 120
    const health = 10
    const Phealth = 5
    const BSpeed = 700
    const TIME_COUNT = 0
    const KPOS = height()/9
+   const KSCALE = height()/2500
 
    layers(['background', 'obj'], 'obj')
    add([ sprite("background", {width: width(), height: height()})
@@ -45,17 +46,17 @@ scene("battle", ()=> {
     ])
 }
 
-onKeyDown("up", () => {
+onKeyPress("up", () => {
     father.move(0, -fatherSpeed)
-    if (father.pos.x < 0) {
-        father.pos.x = width()
+    if (father.pos.y < 0) {
+        father.pos.y = height()
     }
 })
 
-onKeyDown("down", () => {
+onKeyPress("down", () => {
     father.move(0, fatherSpeed)
-    if (father.pos.x > width()) {
-        father.pos.x = 0
+    if (father.pos.y > height()) {
+        father.pos.y = 0
     }
 })
 
@@ -90,7 +91,7 @@ const Lars = add([
     sprite("Lars"),
     // rect(width()/ 28, width()/28),
     // color(0, 200, 300),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 - KPOS),
     origin("center"),
@@ -98,7 +99,7 @@ const Lars = add([
 
 const Tex = add([
     sprite("Tex"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1,height()/2 - 2*KPOS),
     origin("center"),
@@ -106,7 +107,7 @@ const Tex = add([
 
 const Shelldon = add([
     sprite("Shelldon"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 - 3*KPOS),
     origin("center"),
@@ -114,7 +115,7 @@ const Shelldon = add([
 
 const Rainette = add([
     sprite("Rainette"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 - 4*KPOS),
     origin("center"),
@@ -122,7 +123,7 @@ const Rainette = add([
 
 const Raina = add([
     sprite("Raina"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 + KPOS),
     origin("center"),
@@ -130,7 +131,7 @@ const Raina = add([
 
 const Ivy = add([
     sprite("Ivy"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 + 2*KPOS),
     origin("center"),
@@ -138,7 +139,7 @@ const Ivy = add([
 
 const Dwayne = add([
     sprite("Dwayne"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2),
     origin("center"),
@@ -146,7 +147,7 @@ const Dwayne = add([
 
 const Shuihaizi = add([
     sprite("Shuihaizi"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 + 3*KPOS),
     origin("center"),
@@ -154,7 +155,7 @@ const Shuihaizi = add([
 
 const Bartholomew = add([
     sprite("Bartholomew"),
-    scale(.25),
+    scale(KSCALE),
     area(),
     pos(width()/1.1, height()/2 + 4*KPOS),
     origin("center"),
