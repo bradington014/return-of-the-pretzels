@@ -1,7 +1,7 @@
 
 scene("battle", ()=> {
    const fatherSpeed = 300
-   const pretzelSpeed = 120
+   const pretzelSpeed = 200
    const health = 10
    const Phealth = 5
    const BSpeed = 700
@@ -167,22 +167,8 @@ const Bartholomew = add([
     origin("center"),
 ])
 
-function spawnPretzel() {
-    add([
-        sprite("pretzel"),
-        area(),
-        pos(0, rand(0, height())),
-        health(Phealth),
-        "enemy",
-        { speed : rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
 
-    ])
-}
 
-onCollide("bullet", "enemy", (b, e) => {
-    destroy(b),
-    e.health = e.heatlh - 2
-})
 
 
 
