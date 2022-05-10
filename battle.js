@@ -1,6 +1,6 @@
 
 scene("battle", ()=> {
-   const fatherSpeed = 100
+   const fatherSpeed = 300
    const pretzelSpeed = 200
    const health = 10
    const Phealth = 5
@@ -45,6 +45,20 @@ scene("battle", ()=> {
     ])
 }
 
+onKeyDown("up", () => {
+    father.move(0, -fatherSpeed)
+    if (father.pos.x < 0) {
+        father.pos.x = width()
+    }
+})
+
+onKeyDown("down", () => {
+    father.move(0, fatherSpeed)
+    if (father.pos.x > width()) {
+        father.pos.x = 0
+    }
+})
+
 onKeyPress("space", () => {
     spawnBullet(father.pos.x, father.pos.y)
     //father.pos.x, father.pos.y
@@ -58,6 +72,8 @@ const father = add([
     pos(width() - 25, height() / 2),
     origin("center"),
 ])
+
+
 
 const wall = add([
 //sprite("wall"),
@@ -152,14 +168,6 @@ const Bartholomew = add([
 ])
 
 
-
-
-add([
-    text('starting game'),
-    pos(120, 80),
-    scale(5),
-    
-])
 
 
 
