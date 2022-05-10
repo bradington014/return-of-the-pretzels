@@ -10,5 +10,6 @@ loadSprite("Dwayne", )
 loadSprite("Shuihaizi", )
 loadSprite("Bartholomew", )
 loadSprite("pretzel",)
+loadSprite("background", "assets/sapbackground.png");
 
 
