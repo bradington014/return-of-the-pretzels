@@ -1,5 +1,5 @@
-loadSprite("father", )
-loadSprite("wall", )
+//loadSprite("father", )
+//loadSprite("wall", )
 loadSprite("Lars", "sprites/Lars.png")
 loadSprite("Tex", "sprites/Tex.png")
 loadSprite("Shelldon", "sprites/Shelldon.png")

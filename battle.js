@@ -1,16 +1,19 @@
-
-scene("battle", () => {
-    const fatherSpeed = height() * 7
+const fatherSpeed = height() * 7
     const pretzelSpeed = 120
     const health = 10
     const Phealth = 5
     const BSpeed = 700
     const TIME_COUNT = 0
     const KPOS = height() / 9
+    const NPOS = height()/23
     const KSCALE = height() / 2500
     var FMove = 5
     var BDMG = 1
     var wave = 0
+    var TexScript = "false"
+
+scene("battle", () => {
+    
 
     layers(['background', 'obj'], 'obj')
     add([sprite("background", { width: width(), height: height() })
@@ -92,115 +95,28 @@ scene("battle", () => {
     ])
 
 
-    const Lars = add([
-        sprite("Lars"),
-        // rect(width()/ 28, width()/28),
-        // color(0, 200, 300),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 - KPOS),
-        origin("center"),
-    ])
-
-    // sprite("name"),
-    // scale(KSCALE),
-    // area(),
-    // pos(width()/1.1,height()/2 - 2*KPOS),
-    // origin("center"),
-    // "Tex"
-    function addChild(name, posx, posy, sac) {
-        const child = add([
-            sprite(name),
-            scale(KSCALE),
-            area(),
-            pos(posx, posy),
-            origin("center"),
-            //  name
-        ])
-        child.onClick(sac)
-    }
-
-    scene("TexScene", () => {
-        add([
-            rect(50, 48),
-            area(),
-            pos(width() / 2, height() / 2),
-            origin("center"),
-            color(127, 127, 255),
-            outline(4),
-        ])
-    })
-    
-    addChild("Tex", width() / 1.1, height() / 2 - 2 * KPOS, "TexScene")
-
-
-
    
+    
 
-    //Tex.onClick(go("TexScene"))
-    // onUpdate("Tex", (t)=>{
-    //     if(mousePos().x > width()/1.1){
-    //         onClick(go("TexScene"))
-    //     }
-    // })
+ 
+addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac()},"Freezes Map")  
 
+ addChild("Tex", width() / 1.035, height() / 2 - 2 * KPOS, ()=> {sac()}, "Sets enemies aflame")
 
+ addChild("Shelldon", width() / 1.035, height() / 2 - 3 * KPOS, ()=> {sac()}, "Slows time")
 
-    const Shelldon = add([
-        sprite("Shelldon"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 - 3 * KPOS),
-        origin("center"),
-    ])
+ addChild("Rainette", width() / 1.035, height() / 2 - 4 * KPOS, ()=> {sac()}, "Showers enemies with arrows")
 
-    const Rainette = add([
-        sprite("Rainette"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 - 4 * KPOS),
-        origin("center"),
-    ])
+ addChild("Raina", width() / 1.035, height() / 2 + KPOS, ()=> {sac()}, "Hurts Enemies with acid rain")
 
-    const Raina = add([
-        sprite("Raina"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 + KPOS),
-        origin("center"),
-    ])
+ addChild("Ivy", width() / 1.035, height() / 2 + 2 * KPOS, ()=> {sac()}, "Poisons enemies")
 
-    const Ivy = add([
-        sprite("Ivy"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 + 2 * KPOS),
-        origin("center"),
-    ])
+ addChild("Dwayne", width() / 1.035, height() / 2, ()=> {sac()}, "Creates an earthquake")
 
-    const Dwayne = add([
-        sprite("Dwayne"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2),
-        origin("center"),
-    ])
+ addChild("Shuihaizi", width() / 1.035, height() / 2 + 3 * KPOS, ()=> {sac()}, "Creates a Tsunami")
 
-    const Shuihaizi = add([
-        sprite("Shuihaizi"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 + 3 * KPOS),
-        origin("center"),
-    ])
+ addChild("Bartholomew", width() / 1.035, height() / 2 + 4 * KPOS, ()=> {sac()}, "Decapitate enemies with hats")
 
-    const Bartholomew = add([
-        sprite("Bartholomew"),
-        scale(KSCALE),
-        area(),
-        pos(width() / 1.1, height() / 2 + 4 * KPOS),
-        origin("center"),
-    ])
 
     function spawnPretzel() {
         add([
@@ -220,20 +136,60 @@ scene("battle", () => {
     })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    onUpdate("tr", (t)=>{
+        destroy(t)
+    })
 
 })
+
+function addChild(name, posx, posy, sac, power) {
+    const child = add([
+        sprite(name),
+        scale(KSCALE),
+        area(),
+        pos(posx, posy),
+        origin("center"),
+        name
+    ])
+    child.onClick(sac)
+
+    
+    
+
+    child.onUpdate(() => {
+        if (child.isHovering()) {
+           
+            add([
+                pos(posx, posy + NPOS),
+                text(name),
+                origin("center"),
+                "tr"
+            ])
+
+            add([
+                 pos(posx - 3*NPOS, posy),
+                text(power,{
+                    width: 100,
+                }),
+                origin("center"),
+                "tr"
+            ])
+        } else{
+            
+        }
+
+    })
+}
+
+
+function sac(){
+    add([
+        rect(50, 48),
+        area(),
+        pos(width() / 2, height() / 2),
+        origin("center"),
+        color(327, 127, 255),
+        outline(4),
+    ])
+
+}
