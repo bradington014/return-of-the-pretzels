@@ -193,6 +193,11 @@ function sac(posX, posY, name, Sacrifice, Cancel){
          area({ cursor: "pointer", }),
      ])
      Sacr.onClick(Sacrifice)
+     Sacr.onClick(()=>{
+        cancel.destroy()
+        Sacr.destroy()
+        destroyAll(name)
+    })
 
     const cancel = add([
        text("Cancel"),
@@ -202,13 +207,17 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         area({ cursor: "pointer", }),
     ])
     cancel.onClick(Cancel)
+    cancel.onClick(()=>{
+        cancel.destroy()
+        Sacr.destroy()
+    })
 
 }
 
 function death (name){
     add([
         pos(width()/2, height()/10),
-        text("You Sacrificed " + name + "for the greater good.",{
+        text("You Sacrificed " + name + " for the greater good.",{
             size: 50,
             width: 1000,
         }),
