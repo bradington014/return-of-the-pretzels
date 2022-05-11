@@ -78,7 +78,7 @@ scene("battle", () => {
         rect(width() / 28, width() / 28),
         area(),
         color("black"),
-        pos(width() - 25, height() / 2),
+        pos(width()/1.15, height() / 2),
         origin("center"),
     ])
 
@@ -99,23 +99,23 @@ scene("battle", () => {
     
 
  
-addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac()},"Freezes Map")  
+addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, height() / 2 - KPOS, "Lars", () => {death("Lars")}, () => {cancel()})},"Freezes Map")  
 
- addChild("Tex", width() / 1.035, height() / 2 - 2 * KPOS, ()=> {sac()}, "Sets enemies aflame")
+ addChild("Tex", width() / 1.035, height() / 2 - 2 * KPOS, ()=> {sac(width() / 1.035, height() / 2 - 2 * KPOS, "Tex",() => {death("Tex")}, () => {cancel()})}, "Sets enemies aflame")
 
- addChild("Shelldon", width() / 1.035, height() / 2 - 3 * KPOS, ()=> {sac()}, "Slows time")
+ addChild("Shelldon", width() / 1.035, height() / 2 - 3 * KPOS, ()=> {sac(width() / 1.035, height() / 2 - 3 * KPOS, "Shelldon",() => {death("Shelldon")}, () => {cancel()})}, "Slows time")
 
- addChild("Rainette", width() / 1.035, height() / 2 - 4 * KPOS, ()=> {sac()}, "Showers enemies with arrows")
+ addChild("Rainette", width() / 1.035, height() / 2 - 4 * KPOS, ()=> {sac(width() / 1.035, height() / 2 - 4 * KPOS, "Rainette",() => {death("Rainette")}, () => {cancel()})}, "Showers enemies with arrows")
 
- addChild("Raina", width() / 1.035, height() / 2 + KPOS, ()=> {sac()}, "Hurts Enemies with acid rain")
+ addChild("Raina", width() / 1.035, height() / 2 + KPOS, ()=> {sac(width() / 1.035, height() / 2 + KPOS, "Raina",() => {death("Raina")}, () => {cancel()})}, "Hurts Enemies with acid rain")
 
- addChild("Ivy", width() / 1.035, height() / 2 + 2 * KPOS, ()=> {sac()}, "Poisons enemies")
+ addChild("Ivy", width() / 1.035, height() / 2 + 2 * KPOS, ()=> {sac(width() / 1.035, height() / 2 + 2 * KPOS, "Ivy",() => {death("Ivy")}, () => {cancel()})}, "Poisons enemies")
 
- addChild("Dwayne", width() / 1.035, height() / 2, ()=> {sac()}, "Creates an earthquake")
+ addChild("Dwayne", width() / 1.035, height() / 2, ()=> {sac(width() / 1.035, height() / 2, "Dwayne",() => {death("Dwayne")}, () => {cancel()})}, "Creates an earthquake")
 
- addChild("Shuihaizi", width() / 1.035, height() / 2 + 3 * KPOS, ()=> {sac()}, "Creates a Tsunami")
+ addChild("Shuihaizi", width() / 1.035, height() / 2 + 3 * KPOS, ()=> {sac(width() / 1.035, height() / 2 + 3 * KPOS, "Shuihaizi",() => {death("Shuihaizi")}, () => {cancel()})}, "Creates a Tsunami")
 
- addChild("Bartholomew", width() / 1.035, height() / 2 + 4 * KPOS, ()=> {sac()}, "Decapitate enemies with hats")
+ addChild("Bartholomew", width() / 1.035, height() / 2 + 3.9 * KPOS, ()=> {sac(width() / 1.035, height() / 2 + 3.9 * KPOS, "Bartholomew",() => {death("Bartholomew")}, () => {cancel()})}, "Decapitate enemies with hats")
 
 
     function spawnPretzel() {
@@ -160,14 +160,14 @@ function addChild(name, posx, posy, sac, power) {
         if (child.isHovering()) {
            
             add([
-                pos(posx, posy + NPOS),
+                pos(posx, posy - NPOS),
                 text(name),
                 origin("center"),
                 "tr"
             ])
 
             add([
-                 pos(posx - 3*NPOS, posy),
+                 pos(posx - 1.5*NPOS, posy),
                 text(power,{
                     width: 100,
                 }),
@@ -182,14 +182,41 @@ function addChild(name, posx, posy, sac, power) {
 }
 
 
-function sac(){
-    add([
-        rect(50, 48),
-        area(),
-        pos(width() / 2, height() / 2),
+function sac(posX, posY, name, Sacrifice, Cancel){
+    const Sacr = add([
+        text("Sacrifice " + name,{
+            width: 88,
+        }),
+         pos(posX - 3.5*NPOS, posY - NPOS),
+         origin("center"),
+         color(0,300,0),
+         area({ cursor: "pointer", }),
+     ])
+     Sacr.onClick(Sacrifice)
+
+    const cancel = add([
+       text("Cancel"),
+        pos(posX - 3.5*NPOS, posY + NPOS),
         origin("center"),
-        color(327, 127, 255),
-        outline(4),
+        color(300,0,0),
+        area({ cursor: "pointer", }),
     ])
+    cancel.onClick(Cancel)
+
+}
+
+function death (name){
+    add([
+        pos(width()/2, height()/10),
+        text("You Sacrificed " + name + "for the greater good.",{
+            size: 50,
+            width: 1000,
+        }),
+        origin("center"),
+        color(300,200,100),
+    ]) 
+}
+
+function cancel (){
 
 }
