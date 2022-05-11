@@ -119,9 +119,6 @@ scene("battle", () => {
         ])
         child.onClick(sac)
     }
-    addChild("Tex", width() / 1.1, height() / 2 - 2 * KPOS, "TexScene")
-
-
 
     scene("TexScene", () => {
         add([
@@ -133,6 +130,12 @@ scene("battle", () => {
             outline(4),
         ])
     })
+    
+    addChild("Tex", width() / 1.1, height() / 2 - 2 * KPOS, "TexScene")
+
+
+
+   
 
     //Tex.onClick(go("TexScene"))
     // onUpdate("Tex", (t)=>{
