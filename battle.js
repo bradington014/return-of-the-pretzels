@@ -9,8 +9,11 @@ const fatherSpeed = height() * 7
     const KSCALE = height() / 2500
     var FMove = 5
     var BDMG = 1
+    var BRELOAD = 3
+    var KSPEED = 100
     var wave = 0
     var TexScript = "false"
+    var point = 9
 
 scene("battle", () => {
     
@@ -52,23 +55,38 @@ scene("battle", () => {
         ])
     }
 
-    onKeyPress("up", () => {
+    // onKeyPress("up", () => {
 
-        if (father.pos.y > 0 && FMove < 9) {
-            father.move(0, -fatherSpeed)
-            FMove += 1
+    //     if (father.pos.y > 0 && FMove < 9) {
+    //         father.move(0, -fatherSpeed)
+    //         FMove += 1
+    //     }
+    // })
+
+    // onKeyPress("down", () => {
+
+    //     if (father.pos.y < height() && FMove > 1) {
+    //         father.move(0, fatherSpeed)
+    //         FMove -= 1
+    //     }
+    // })
+
+    onKeyDown("up", () => {
+
+        if (father.pos.y > 0 + 25 && father.pos.y < height()) {
+            father.move(0, -KSPEED)
+           
         }
     })
 
-    onKeyPress("down", () => {
+    onKeyDown("down", () => {
 
-        if (father.pos.y < height() && FMove > 1) {
-            father.move(0, fatherSpeed)
-            FMove -= 1
+        if (father.pos.y < height() - 25 && father.pos.y > 0) {
+            father.move(0, KSPEED)
         }
     })
 
-    onKeyPress("space", () => {
+    onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
         //father.pos.x, father.pos.y
     })
