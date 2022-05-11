@@ -242,6 +242,11 @@ function death (name){
         origin("center"),
         color(300,200,100),
     ]) 
+    if(name = "lars"){
+        larsPowers()
+    } else if(name = "tex"){
+        texPowers()
+    }
 }
 
 function cancel (){
