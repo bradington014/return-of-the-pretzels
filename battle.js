@@ -1,4 +1,6 @@
-const fatherSpeed = height() * 7
+import "./powers.js";
+
+    const fatherSpeed = height() * 7
     const pretzelSpeed = 120
     const health = 10
     const Phealth = 5
@@ -14,11 +16,13 @@ const fatherSpeed = height() * 7
     var wave = 0
     var TexScript = "false"
     var point = 9
+    var holder = "tr"
+    var stay = "true"
 
 scene("battle", () => {
     
 
-    layers(['background', 'bio', 'wall', 'obj'], 'bio')
+    layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
 
@@ -49,6 +53,7 @@ scene("battle", () => {
             color(127, 127, 255),
             outline(4),
             move(0, -BSpeed),
+            layer("top"),
             cleanup(),
             // strings here means a tag
             "bullet",
@@ -95,9 +100,10 @@ scene("battle", () => {
         // sprite("father"),
         rect(width() / 28, width() / 28),
         area(),
-        color("black"),
+        color(100,100,300),
         pos(width()/1.15, height() / 2),
         origin("center"),
+        layer("top"),
     ])
 
 
@@ -109,7 +115,7 @@ scene("battle", () => {
         //body(),
         pos(width() / 1.2, height() / 2),
         origin("center"),
-        layer("bio"),
+        layer("wall"),
 
     ])
 
@@ -159,6 +165,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     onUpdate("tr", (t)=>{
         destroy(t)
     })
+    onUpdate("af", (t)=>{
+        destroy(t)
+    })
 
 })
 
@@ -171,77 +180,139 @@ function addChild(name, posx, posy, sac, power) {
         origin("center"),
         name
     ])
-    child.onClick(sac)
+    // child.onClick(() =>{
+    //     holder = ""
+    // })
 
+    // child.onUpdate(()=>{
+    //     if(stay = "true"){
+    //         child.onClick(sac)
+    //     }
+    // })
+
+    child.onClick(sac)
     
     
 
     child.onUpdate(() => {
         if (child.isHovering()) {
            
-            add([
+            const pName = add([
                 pos(posx, posy - NPOS),
                 text(name),
                 origin("center"),
-                layer("obj"),
-                "tr",
+                layer("bio"),
+               // holder,
 
             ])
 
-            add([
-                rect(width()/4, height()/6),
-                pos(posx - 200, posy),
+            const pName2 = add([
+                pos(width()/1.225, height()/2.85),
+                text(name),
+                origin("center"),
+                layer("bio"),
+                scale(2),
+                color(200,100,150),
+               // holder,
+
+            ])
+
+            const backBio = add([
+                rect(width()/4, height()/3),
+                pos(width()/1.225, height()/2),
                 origin("center"),
                 color(0,0,0),
-                layer("bio"),
-                "tr",
+                layer("obj"),
+               // holder,
             ])
-            add([
-                 pos(posx - 200, posy),
+           const bio =  add([
+                 pos(width()/1.225, height()/2),
                 text(power,{
                     width: width()/4,
+                    size: (height() + width()) / 180
                 }),
+                color(300,300,0),
                 origin("center"),
-                layer("obj"),
-                "tr"
+                layer("bio"),
+               // holder,
             ])
-        } else{
-            
-        }
+
+          
+            pName.onUpdate(()=>{
+                pName.destroy()
+            })
+
+            pName2.onUpdate(()=>{
+                pName2.destroy()
+            })
+
+            backBio.onUpdate(()=>{
+                backBio.destroy()
+            })
+
+            bio.onUpdate(()=>{
+                bio.destroy()
+            })
+    
+        } 
 
     })
 }
 
 
 function sac(posX, posY, name, Sacrifice, Cancel){
+    console.log(stay)
+    if (stay == "true"){
     const Sacr = add([
         text("Sacrifice " + name,{
-            width: 88,
+            width: 220,
+            size: 25
         }),
-         pos(posX - 3.5*NPOS, posY - NPOS),
+         pos(width()/1.225,height()/4.5),
          origin("center"),
          color(0,300,0),
          area({ cursor: "pointer", }),
+         layer("bio"),
      ])
      Sacr.onClick(Sacrifice)
      Sacr.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
+        back.destroy()
         destroyAll(name)
+        stay = "true"
+           // holder = "tr"
     })
 
     const cancel = add([
-       text("Cancel"),
-        pos(posX - 3.5*NPOS, posY + NPOS),
+       text("Cancel",{
+           size:25,
+       }),
+        pos(width()/1.225, height()/3.5),
         origin("center"),
         color(300,0,0),
         area({ cursor: "pointer", }),
+        layer("bio"),
     ])
     cancel.onClick(Cancel)
     cancel.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
+        back.destroy()
+        stay = "true"
+       // holder = "tr"
     })
+
+    const back = add([
+        rect(width()/6, height()/7),
+         pos(width()/1.225, height()/4),
+         origin("center"),
+         color(0,100,200),
+         layer("obj"),
+    ])
+    stay = "false"    
+}
+
 
 }
 
@@ -255,13 +326,102 @@ function death (name){
         origin("center"),
         color(300,200,100),
     ]) 
-    if(name = "lars"){
+    if(name == "Lars"){
         larsPowers()
-    } else if(name = "tex"){
+    } else if(name == "Tex"){
         texPowers()
+    } else if(name == "Shelldon"){
+        shelldonPowers()
+    } else if(name == "Rainette"){
+        rainettePowers()
+    } else if(name == "Raina"){
+        rainaPowers()
+    } else if(name == "Ivy"){
+        ivyPowers()
+    } else if(name == "Dwayne"){
+        dwaynePowers()
+    } else if(name == "Shuihaizi"){
+        shuihaiziPowers()
+    } else if(name == "Bartholomew"){
+        bartholomewPowers()
     }
 }
 
 function cancel (){
-
+   
 }
+
+
+function larsPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(149,206,214,50),
+        origin("center")
+    ])
+}
+
+function texPowers(){
+    add([
+    rect(width()/2,height()/2),
+    pos(500,500),
+    color(255,57,0,50),
+])
+}
+
+function shelldonPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(149,206,214,50),
+    ])
+}
+
+function rainettePowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(300,200,100,50),
+    ])
+}
+
+function rainaPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(200,300,100,50),
+    ])
+}
+
+function ivyPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(100,200,300,50),
+    ])
+}
+
+function dwaynePowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(300,300,200,50),
+    ])
+}
+
+function shuihaiziPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(250,300,150,50),
+    ])
+}
+
+function bartholomewPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(250,250,50,50),
+    ])
+}
+
