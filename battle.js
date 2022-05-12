@@ -20,7 +20,7 @@ const fatherSpeed = height() * 7
 scene("battle", () => {
     
 
-    layers(['background', 'wall', 'obj', 'king', 'bio'], 'wall')
+    layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
 
@@ -51,6 +51,7 @@ scene("battle", () => {
             color(127, 127, 255),
             outline(4),
             move(0, -BSpeed),
+            layer("top"),
             cleanup(),
             // strings here means a tag
             "bullet",
@@ -100,7 +101,7 @@ scene("battle", () => {
         color(100,100,300),
         pos(width()/1.15, height() / 2),
         origin("center"),
-        layer("king"),
+        layer("top"),
     ])
 
 
@@ -204,7 +205,7 @@ function addChild(name, posx, posy, sac, power) {
             ])
 
             const pName2 = add([
-                pos(width()/1.225, height()/2.5),
+                pos(width()/1.225, height()/2.85),
                 text(name),
                 origin("center"),
                 layer("bio"),
@@ -215,7 +216,7 @@ function addChild(name, posx, posy, sac, power) {
             ])
 
             const backBio = add([
-                rect(width()/4, height()/4),
+                rect(width()/4, height()/3),
                 pos(width()/1.225, height()/2),
                 origin("center"),
                 color(0,0,0),
@@ -226,8 +227,8 @@ function addChild(name, posx, posy, sac, power) {
                  pos(width()/1.225, height()/2),
                 text(power,{
                     width: width()/4,
+                    size: (height() + width()) / 180
                 }),
-                scale(1),
                 color(300,300,0),
                 origin("center"),
                 layer("bio"),
