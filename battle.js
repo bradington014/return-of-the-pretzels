@@ -10,6 +10,8 @@ import "./powers.js";
     const NPOS = height()/23
     const KSCALE = (height() + width ()) / 6875
     const BKSCALE = (height() + width ()) / 5500
+    const NtextScale = 1
+    const BtextScale = 1.25
     let AKSCALE = KSCALE
     var FMove = 5
     var BDMG = 1
@@ -277,6 +279,7 @@ function sac(posX, posY, name, Sacrifice, Cancel){
          color(0,300,0),
          area({ cursor: "pointer", }),
          layer("bio"),
+         scale(NtextScale),
      ])
      Sacr.onClick(Sacrifice)
      Sacr.onClick(()=>{
@@ -286,6 +289,13 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         destroyAll(name)
         stay = "true"
            // holder = "tr"
+    })
+        Sacr.onUpdate(() =>{ 
+        if(Sacr.isHovering()){
+            Sacr.scale = BtextScale
+        } else{
+            Sacr.scale = NtextScale
+        }
     })
 
     const cancel = add([
@@ -305,6 +315,14 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         back.destroy()
         stay = "true"
        // holder = "tr"
+    })
+
+    cancel.onUpdate(() =>{ 
+        if(cancel.isHovering()){
+            cancel.scale = BtextScale
+        } else{
+            cancel.scale = NtextScale
+        }
     })
 
     const back = add([
