@@ -31,6 +31,8 @@ import{bartholomewPowers} from "./powers.js"
     var point = 9
     var holder = "tr"
     var stay = "true"
+    var PretzelCount = TIME_COUNT
+    var PretzelCountTF = "false"
 
 scene("battle", () => {
     
@@ -59,6 +61,7 @@ scene("battle", () => {
         pos(50, 50),
         scale(2),
         layer('obj'),
+        "timer",
         {
             time: TIME_COUNT,
         },
@@ -192,8 +195,16 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     })
 
     onKeyPress("k", ()  => {
-        spawnPretzel()
+        PretzelCountTF = "true"
+        
+    }
         //father.pos.x, father.pos.y
+    )
+
+    onUpdate("timer", (t) =>{
+            if(PretzelCountTF == "true" && timer.text % 1 === 0){
+                spawnPretzel()
+            }
     })
 
 
