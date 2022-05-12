@@ -1,5 +1,5 @@
 
-function larsPowers(){
+let larsPowers = function larsPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -7,7 +7,7 @@ function larsPowers(){
     ])
 }
 
-function texPowers(){
+let texPowers = function texPowers(){
     add([
     rect(width()/2,height()/2),
     pos(500,500),
@@ -15,7 +15,7 @@ function texPowers(){
 ])
 }
 
-function shelldonPowers(){
+let shelldonPowers = function shelldonPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -23,7 +23,7 @@ function shelldonPowers(){
     ])
 }
 
-function rainettePowers(){
+let rainettePowers = function rainettePowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -31,7 +31,7 @@ function rainettePowers(){
     ])
 }
 
-function rainaPowers(){
+let rainaPowers = function rainaPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -39,7 +39,7 @@ function rainaPowers(){
     ])
 }
 
-function ivyPowers(){
+let ivyPowers = function ivyPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -47,7 +47,7 @@ function ivyPowers(){
     ])
 }
 
-function dwaynePowers(){
+let dwaynePowers = function dwaynePowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -55,7 +55,7 @@ function dwaynePowers(){
     ])
 }
 
-function shuihaiziPowers(){
+let shuihaiziPowers = function shuihaiziPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
@@ -63,10 +63,12 @@ function shuihaiziPowers(){
     ])
 }
 
-function bartholomewPowers(){
+let bartholomewPowers = function bartholomewPowers(){
     add([
         rect(width()/2,height()/2),
         pos(500,500),
         color(250,250,50,50),
     ])
 }
+
+export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, dwaynePowers, shuihaiziPowers, bartholomewPowers};
