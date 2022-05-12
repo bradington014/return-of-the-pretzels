@@ -1,7 +1,7 @@
 import "./powers.js";
 
     const fatherSpeed = height() * 7
-    const pretzelSpeed = 120
+    const pretzelSpeed = 50
     const health = 10
     const Phealth = 5
     const BSpeed = 700
@@ -59,7 +59,6 @@ scene("battle", () => {
             move(0, -BSpeed),
             layer("top"),
             cleanup(),
-            // strings here means a tag
             "bullet",
         ])
     }
@@ -149,16 +148,27 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     function spawnPretzel() {
-        add([
+        const enemy = add([
             sprite("pretzel"),
             area(),
             pos(0, rand(0, height())),
-            health(Phealth),
+            layer("top"),
+        //    health(Phealth),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
-
         ])
+        
     }
+
+    onUpdate("enemy", (e) =>{
+        e.move(e.speed,0)
+    })
+
+    onKeyPress("k", ()  => {
+        spawnPretzel()
+        //father.pos.x, father.pos.y
+    })
+
 
     onCollide("bullet", "enemy", (b, e) => {
         destroy(b),
