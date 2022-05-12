@@ -14,6 +14,8 @@ const fatherSpeed = height() * 7
     var wave = 0
     var TexScript = "false"
     var point = 9
+    var holder = "tr"
+    var stay = "true"
 
 scene("battle", () => {
     
@@ -159,6 +161,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     onUpdate("tr", (t)=>{
         destroy(t)
     })
+    onUpdate("af", (t)=>{
+        destroy(t)
+    })
 
 })
 
@@ -171,77 +176,112 @@ function addChild(name, posx, posy, sac, power) {
         origin("center"),
         name
     ])
-    child.onClick(sac)
+    // child.onClick(() =>{
+    //     holder = ""
+    // })
 
+    // child.onUpdate(()=>{
+    //     if(stay = "true"){
+    //         child.onClick(sac)
+    //     }
+    // })
+
+    child.onClick(sac)
     
     
 
     child.onUpdate(() => {
         if (child.isHovering()) {
            
-            add([
+            const pName = add([
                 pos(posx, posy - NPOS),
                 text(name),
                 origin("center"),
                 layer("obj"),
-                "tr",
+               // holder,
 
             ])
 
-            add([
-                rect(width()/4, height()/6),
-                pos(posx - 200, posy),
+            const backBio = add([
+                rect(width()/4, height()/4),
+                pos(width()/1.225, height()/2),
                 origin("center"),
                 color(0,0,0),
                 layer("bio"),
-                "tr",
+               // holder,
             ])
-            add([
-                 pos(posx - 200, posy),
+           const bio =  add([
+                 pos(width()/1.225, height()/2),
                 text(power,{
                     width: width()/4,
                 }),
                 origin("center"),
                 layer("obj"),
-                "tr"
+               // holder,
             ])
-        } else{
-            
-        }
+
+          
+            pName.onUpdate(()=>{
+                pName.destroy()
+            })
+
+            backBio.onUpdate(()=>{
+                backBio.destroy()
+            })
+
+            bio.onUpdate(()=>{
+                bio.destroy()
+            })
+    
+        } 
 
     })
 }
 
 
 function sac(posX, posY, name, Sacrifice, Cancel){
+    console.log(stay)
+    if (stay == "true"){
     const Sacr = add([
         text("Sacrifice " + name,{
-            width: 88,
+            width: 200,
+            size: 25
         }),
-         pos(posX - 3.5*NPOS, posY - NPOS),
+         pos(width()/1.225,height()/2.55),
          origin("center"),
          color(0,300,0),
          area({ cursor: "pointer", }),
+         layer("obj"),
      ])
      Sacr.onClick(Sacrifice)
      Sacr.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
         destroyAll(name)
+        stay = "true"
+           // holder = "tr"
     })
 
     const cancel = add([
-       text("Cancel"),
-        pos(posX - 3.5*NPOS, posY + NPOS),
+       text("Cancel",{
+           size:25,
+       }),
+        pos(width()/1.225, height()/1.65),
         origin("center"),
         color(300,0,0),
         area({ cursor: "pointer", }),
+        layer("obj"),
     ])
     cancel.onClick(Cancel)
     cancel.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
+        stay = "true"
+       // holder = "tr"
     })
+    stay = "false"    
+}
+
 
 }
 
@@ -263,5 +303,5 @@ function death (name){
 }
 
 function cancel (){
-
+   
 }
