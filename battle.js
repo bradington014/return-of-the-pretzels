@@ -40,6 +40,20 @@ scene("battle", () => {
     ]);
 
 
+    const health = add([
+        text(),
+        color(0,300,0),
+        pos(width()/1.2, height()/18),
+        layer("bio"),
+        origin("center"),
+        
+    ])
+
+    health.action (() => {
+        health.text = wHealth
+    })
+
+
     const timer = add([
         text('0'),
         pos(50, 50),
@@ -193,7 +207,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         destroy(e)
         if(wHealth > 0){
             wHealth = wHealth - 1
-        } else if (wHealth <= 0){
+        } if (wHealth <= 0){
             go("lose")
         }
     })
