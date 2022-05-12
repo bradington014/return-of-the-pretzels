@@ -1,4 +1,6 @@
-const fatherSpeed = height() * 7
+import "./powers.js";
+
+    const fatherSpeed = height() * 7
     const pretzelSpeed = 120
     const health = 10
     const Phealth = 5
@@ -324,13 +326,102 @@ function death (name){
         origin("center"),
         color(300,200,100),
     ]) 
-    if(name = "lars"){
+    if(name == "Lars"){
         larsPowers()
-    } else if(name = "tex"){
+    } else if(name == "Tex"){
         texPowers()
+    } else if(name == "Shelldon"){
+        shelldonPowers()
+    } else if(name == "Rainette"){
+        rainettePowers()
+    } else if(name == "Raina"){
+        rainaPowers()
+    } else if(name == "Ivy"){
+        ivyPowers()
+    } else if(name == "Dwayne"){
+        dwaynePowers()
+    } else if(name == "Shuihaizi"){
+        shuihaiziPowers()
+    } else if(name == "Bartholomew"){
+        bartholomewPowers()
     }
 }
 
 function cancel (){
    
 }
+
+
+function larsPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(149,206,214,50),
+        origin("center")
+    ])
+}
+
+function texPowers(){
+    add([
+    rect(width()/2,height()/2),
+    pos(500,500),
+    color(255,57,0,50),
+])
+}
+
+function shelldonPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(149,206,214,50),
+    ])
+}
+
+function rainettePowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(300,200,100,50),
+    ])
+}
+
+function rainaPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(200,300,100,50),
+    ])
+}
+
+function ivyPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(100,200,300,50),
+    ])
+}
+
+function dwaynePowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(300,300,200,50),
+    ])
+}
+
+function shuihaiziPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(250,300,150,50),
+    ])
+}
+
+function bartholomewPowers(){
+    add([
+        rect(width()/2,height()/2),
+        pos(500,500),
+        color(250,250,50,50),
+    ])
+}
+
