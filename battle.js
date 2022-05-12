@@ -195,7 +195,18 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     })
 
     onKeyPress("k", ()  => {
+        if(PretzelCountTF == "false"){
         PretzelCountTF = "true"
+        }else if(PretzelCountTF == "true"){
+            add([
+                text("Press K to start begin the battle"),
+                color(0, 300, 0),
+                pos(width()/2, height()/2),
+                origin("center"),
+                scale(3.7),
+
+            ])
+        }
         
     }
         //father.pos.x, father.pos.y
