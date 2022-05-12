@@ -9,7 +9,7 @@ import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
 
     const fatherSpeed = height() * 7
-    const pretzelSpeed = 50
+    const pretzelSpeed = 500
     const health = 10
     const Phealth = 5
     const BSpeed = 700
@@ -21,6 +21,7 @@ import{bartholomewPowers} from "./powers.js"
     const NtextScale = 1
     const BtextScale = 1.25
     let AKSCALE = KSCALE
+    var wHealth = 10
     var FMove = 5
     var BDMG = 1
     var BRELOAD = 3
@@ -37,6 +38,20 @@ scene("battle", () => {
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
+
+
+    const health = add([
+        text(),
+        color(0,300,0),
+        pos(width()/1.2, height()/18),
+        layer("bio"),
+        origin("center"),
+        
+    ])
+
+    health.action (() => {
+        health.text = wHealth
+    })
 
 
     const timer = add([
@@ -127,6 +142,7 @@ scene("battle", () => {
         pos(width() / 1.2, height() / 2),
         origin("center"),
         layer("wall"),
+        "wall",
 
     ])
 
@@ -161,7 +177,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             area(),
             pos(0, rand(0, height())),
             layer("top"),
-        //    health(Phealth),
+            scale(1.4),
+            origin("center"),
+          //  health(Phealth),
+          //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
@@ -179,8 +198,18 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onCollide("bullet", "enemy", (b, e) => {
-        destroy(b),
+        destroy(b)
+        destroy(e)
             e.health = e.heatlh - 2
+    })
+
+    onCollide("enemy", "wall", (e) =>{
+        destroy(e)
+        if(wHealth > 0){
+            wHealth = wHealth - 1
+        } if (wHealth <= 0){
+            go("lose")
+        }
     })
 
 
