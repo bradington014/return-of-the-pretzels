@@ -7,21 +7,4 @@ console.log("you lose")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
