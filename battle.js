@@ -20,7 +20,7 @@ const fatherSpeed = height() * 7
 scene("battle", () => {
     
 
-    layers(['background', 'bio', 'wall', 'obj'], 'bio')
+    layers(['background', 'wall', 'obj', 'king', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
 
@@ -97,9 +97,10 @@ scene("battle", () => {
         // sprite("father"),
         rect(width() / 28, width() / 28),
         area(),
-        color("black"),
+        color(100,100,300),
         pos(width()/1.15, height() / 2),
         origin("center"),
+        layer("king"),
     ])
 
 
@@ -111,7 +112,7 @@ scene("battle", () => {
         //body(),
         pos(width() / 1.2, height() / 2),
         origin("center"),
-        layer("bio"),
+        layer("wall"),
 
     ])
 
@@ -197,7 +198,18 @@ function addChild(name, posx, posy, sac, power) {
                 pos(posx, posy - NPOS),
                 text(name),
                 origin("center"),
-                layer("obj"),
+                layer("bio"),
+               // holder,
+
+            ])
+
+            const pName2 = add([
+                pos(width()/1.225, height()/2.5),
+                text(name),
+                origin("center"),
+                layer("bio"),
+                scale(2),
+                color(200,100,150),
                // holder,
 
             ])
@@ -207,7 +219,7 @@ function addChild(name, posx, posy, sac, power) {
                 pos(width()/1.225, height()/2),
                 origin("center"),
                 color(0,0,0),
-                layer("bio"),
+                layer("obj"),
                // holder,
             ])
            const bio =  add([
@@ -215,14 +227,20 @@ function addChild(name, posx, posy, sac, power) {
                 text(power,{
                     width: width()/4,
                 }),
+                scale(1),
+                color(300,300,0),
                 origin("center"),
-                layer("obj"),
+                layer("bio"),
                // holder,
             ])
 
           
             pName.onUpdate(()=>{
                 pName.destroy()
+            })
+
+            pName2.onUpdate(()=>{
+                pName2.destroy()
             })
 
             backBio.onUpdate(()=>{
@@ -244,19 +262,20 @@ function sac(posX, posY, name, Sacrifice, Cancel){
     if (stay == "true"){
     const Sacr = add([
         text("Sacrifice " + name,{
-            width: 200,
+            width: 220,
             size: 25
         }),
-         pos(width()/1.225,height()/2.55),
+         pos(width()/1.225,height()/4.5),
          origin("center"),
          color(0,300,0),
          area({ cursor: "pointer", }),
-         layer("obj"),
+         layer("bio"),
      ])
      Sacr.onClick(Sacrifice)
      Sacr.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
+        back.destroy()
         destroyAll(name)
         stay = "true"
            // holder = "tr"
@@ -266,19 +285,28 @@ function sac(posX, posY, name, Sacrifice, Cancel){
        text("Cancel",{
            size:25,
        }),
-        pos(width()/1.225, height()/1.65),
+        pos(width()/1.225, height()/3.5),
         origin("center"),
         color(300,0,0),
         area({ cursor: "pointer", }),
-        layer("obj"),
+        layer("bio"),
     ])
     cancel.onClick(Cancel)
     cancel.onClick(()=>{
         cancel.destroy()
         Sacr.destroy()
+        back.destroy()
         stay = "true"
        // holder = "tr"
     })
+
+    const back = add([
+        rect(width()/6, height()/7),
+         pos(width()/1.225, height()/4),
+         origin("center"),
+         color(0,100,200),
+         layer("obj"),
+    ])
     stay = "false"    
 }
 
