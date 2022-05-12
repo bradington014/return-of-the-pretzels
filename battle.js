@@ -8,7 +8,9 @@ import "./powers.js";
     const TIME_COUNT = 0
     const KPOS = height() / 9
     const NPOS = height()/23
-    const KSCALE = height() / 2500
+    const KSCALE = (height() + width ()) / 6875
+    const BKSCALE = (height() + width ()) / 5500
+    let AKSCALE = KSCALE
     var FMove = 5
     var BDMG = 1
     var BRELOAD = 3
@@ -174,7 +176,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 function addChild(name, posx, posy, sac, power) {
     const child = add([
         sprite(name),
-        scale(KSCALE),
+        scale(AKSCALE),
         area(),
         pos(posx, posy),
         origin("center"),
@@ -196,7 +198,7 @@ function addChild(name, posx, posy, sac, power) {
 
     child.onUpdate(() => {
         if (child.isHovering()) {
-           
+            child.scale = BKSCALE
             const pName = add([
                 pos(posx, posy - NPOS),
                 text(name),
@@ -253,8 +255,10 @@ function addChild(name, posx, posy, sac, power) {
             bio.onUpdate(()=>{
                 bio.destroy()
             })
-    
-        } 
+            
+        } else{
+            child.scale = (AKSCALE)
+        }
 
     })
 }
