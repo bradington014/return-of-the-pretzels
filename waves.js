@@ -1,17 +1,34 @@
-function wave1() {
-    TIME_COUNT == 0
-   
+import {TIME_COUNT, pretzelSpeed} from "./battle.js"
 
+var wave = 0
+
+
+
+function wave1() {
+    
+    console.log('wave 2')
+    wave = wave + 1,
+    TIME_COUNT == 0
+    
 }
 
 let wave2 = function wave2() {
+    
     TIME_COUNT == 0
-    pretzelSpeed = 150
-    PretzelCountTF = "false"
+    
+    attacking = false
+    
+
 }
 
 function wave3() {
-    
+    if (pretzelDeaths == 20) {
+        TIME_COUNT == 0
+        Text("press k to start wave 3!"),
+
+        pretzelSpeed = 100,
+        { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) }
+    }
 }
 
 function wave4() {
@@ -42,4 +59,4 @@ function wave10() {
     
 }
 
-export{wave2};
+export{wave1, wave2};
