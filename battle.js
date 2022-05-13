@@ -65,15 +65,13 @@ onKeyPress("k", ()  => {
     }else if(PretzelCountTF == "true"){
 
     }
-    
 }
-    //father.pos.x, father.pos.y
 )
 
 const pressK = add([
-        text("Press K to start begin the battle"),
+        text("Press K to begin the battle"),
         color(0, 300, 0),
-        pos(width()/2 - 50, height()/2),
+        pos(width()/2, height()/2),
         origin("center"),
         scale(3.7),
     ])
@@ -83,8 +81,6 @@ const pressK = add([
         pressK.destroy()
         }
     })
-
-
 
     const timer = add([
         text('0'),
@@ -240,12 +236,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         console.log(e.speed)
     })
     
-
-    
-
     onUpdate("timer", (t) =>{
             if(PretzelCountTF == "true" && timer.text % 1 === 0){
                 spawnPretzel()
+
             } 
     })
 
