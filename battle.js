@@ -7,6 +7,7 @@ import{ivyPowers} from "./powers.js"
 import{dwaynePowers} from "./powers.js"
 import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
+import{shelldonPowerCollide} from "./powers.js"
 import{wave2} from "./waves.js";
 
     const fatherSpeed = height() * 7
@@ -260,6 +261,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         } if (wHealth <= 0){
             go("lose")
         }
+    })
+
+    onCollide("enemy,", "shelldonpowerup",()=>{
+        shelldonPowerCollide();
     })
 
 
