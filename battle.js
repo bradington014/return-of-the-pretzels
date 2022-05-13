@@ -35,7 +35,7 @@ import{wave2} from "./waves.js";
     var point = 9
     var holder = "tr"
     var stay = "true"
-    var PretzelCount = TIME_COUNT
+    var PretzelCount = 0
     var PretzelCountTF = "false"
 
 scene("battle", () => {
@@ -67,6 +67,18 @@ onKeyPress("k", ()  => {
     }
 }
 )
+
+const enemyCount = add([
+    text('0'),
+    pos(50, 100),
+    scale(2),
+    layer('obj'),
+    "enemyCount",
+    {
+        count: PretzelCount,
+    },
+])
+
 
 const pressK = add([
         text("Press K to begin the battle"),
@@ -239,9 +251,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     onUpdate("timer", (t) =>{
             if(PretzelCountTF == "true" && timer.text % 1 === 0){
                 spawnPretzel()
-
+                PretzelCount = PretzelCount + 1
             } 
     })
+
 
 
     onCollide("bullet", "enemy", (b, e) => {
