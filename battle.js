@@ -220,7 +220,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     onUpdate("timer", (t) =>{
             if(PretzelCountTF == "true" && timer.text % 1 === 0){
                 spawnPretzel()
-            }
+            } 
     })
 
 
