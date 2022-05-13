@@ -1,3 +1,4 @@
+import "./battle.js";
 
 let larsPowers = function larsPowers(){
     add([
@@ -6,6 +7,7 @@ let larsPowers = function larsPowers(){
         color(149,206,214,50),
         'larspowerup'
     ])
+    
 }
 
 let texPowers = function texPowers(){
