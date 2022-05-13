@@ -9,7 +9,7 @@ import "./story.js";
 import "./waves.js";
 
 function start(){
-go('title');
+go('story');
 }
 
 start()
