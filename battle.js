@@ -7,9 +7,10 @@ import{ivyPowers} from "./powers.js"
 import{dwaynePowers} from "./powers.js"
 import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
+import{wave2} from "./waves.js";
 
     const fatherSpeed = height() * 7
-    const pretzelSpeed = 500
+    const pretzelSpeed = 100
     const health = 10
     const Phealth = 5
     const BSpeed = 700
