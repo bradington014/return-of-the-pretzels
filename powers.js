@@ -75,10 +75,12 @@ let bartholomewPowers = function bartholomewPowers(){
     ])
 }
 
+let shelldonPowerCollide = function shelldonPowerCollide(){
+    onCollide('enemy','shelldonpowerup', (e)=>{
+        e.pretzelSpeed = 0;
+    })
+}
 
-onCollide('enemy','shelldonpowerup', ()=>{
-    pretzelSpeed = 0;
-})
 
 
-export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, dwaynePowers, shuihaiziPowers, bartholomewPowers};
+export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide};
