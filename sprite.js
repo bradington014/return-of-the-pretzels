@@ -9,6 +9,7 @@ loadSprite("Ivy", "sprites/Ivy.png")
 loadSprite("Dwayne", "sprites/Dwayne.png")
 loadSprite("Shuihaizi", "sprites/Shuihaizi.png")
 loadSprite("Bartholomew", "sprites/Bartholomew.png")
+loadSprite("kid", "sprites/kid.png");
 loadSprite("background", "sprites/sapbackground.png");
 
 loadSprite("pretzel", "/sprites/pretzelstrip.png", {
