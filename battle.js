@@ -16,10 +16,12 @@ import{bartholomewPowers} from "./powers.js"
     const TIME_COUNT = 0
     const KPOS = height() / 9
     const NPOS = height()/23
+    const WPOS = height()/13.2
     const KSCALE = (height() + width ()) / 6875
     const BKSCALE = (height() + width ()) / 5500
     const NtextScale = 1
     const BtextScale = 1.25
+    const wS = .5
     let AKSCALE = KSCALE
     var wHealth = 10
     var FMove = 5
@@ -142,25 +144,39 @@ scene("battle", () => {
         //rect(width() / 28, width() / 28),
        // area(),
         //color(100,100,300),
-        scale(.2),
+        scale(KSCALE),
         pos(width()/1.15, height() / 2),
         origin("center"),
         layer("top"),
     ])
 
 
-
+function wall(posY){
     const wall = add([
         sprite("wall"),
-        //rect(50, height()),
         area(),
-        //body(),
-        pos(width() / 1.2, height() / 2),
+        pos(width() / 1.2, posY),
         origin("center"),
         layer("wall"),
+        scale(wS),
         "wall",
 
     ])
+}
+
+wall(height()/2)
+wall(height()/2 - WPOS)
+wall(height()/2 - 2*WPOS)
+wall(height()/2 - 3*WPOS)
+wall(height()/2 - 4*WPOS)
+wall(height()/2 - 5*WPOS)
+wall(height()/2 - 6*WPOS)
+wall(height()/2 + WPOS)
+wall(height()/2 + 2*WPOS)
+wall(height()/2 + 3*WPOS)
+wall(height()/2 + 4*WPOS)
+wall(height()/2 + 5*WPOS)
+wall(height()/2 + 6*WPOS)
 
 
    
