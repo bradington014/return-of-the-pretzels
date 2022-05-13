@@ -54,7 +54,7 @@ scene("battle", () => {
         
     ])
 
-    health.action (() => {
+    health.onUpdate (() => {
         health.text = wHealth
     })
 // starts the pretzels coming at you
@@ -96,7 +96,7 @@ const pressK = add([
         },
     ])
 
-    timer.action(() => {
+    timer.onUpdate(() => {
         timer.time += dt()
         timer.text = timer.time.toFixed(2)
 
@@ -236,7 +236,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
+        console.log(e.speed)
     })
+    
 
     
 
@@ -395,6 +397,8 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         }
     })
 
+    
+
     const cancel = add([
        text("Cancel",{
            size:25,
@@ -437,7 +441,8 @@ function sac(posX, posY, name, Sacrifice, Cancel){
 
 function death (name){
     add([
-        pos(width()/2, height()/10),
+        pos(630, height()/10),
+        rect(1000,100,1000,100),
         text("You Sacrificed " + name + " for the greater good.",{
             size: 50,
             width: 1000,
