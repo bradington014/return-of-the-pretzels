@@ -58,18 +58,32 @@ scene("battle", () => {
         health.text = wHealth
     })
 // starts the pretzels coming at you
+onKeyPress("k", ()  => {
     if(PretzelCountTF == "false"){
-    add([
+    PretzelCountTF = "true"
+    }else if(PretzelCountTF == "true"){
+
+    }
+    
+}
+    //father.pos.x, father.pos.y
+)
+
+const pressK = add([
         text("Press K to start begin the battle"),
         color(0, 300, 0),
         pos(width()/2 - 50, height()/2),
         origin("center"),
         scale(3.7),
     ])
-}else if(PretzelCountTF == "true"){
-    destroy()
 
-}
+    pressK.onUpdate(()=>{
+        if(PretzelCountTF == "true"){
+        pressK.destroy()
+        }
+    })
+
+
 
     const timer = add([
         text('0'),
@@ -224,16 +238,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         e.move(e.speed,0)
     })
 
-    onKeyPress("k", ()  => {
-        if(PretzelCountTF == "false"){
-        PretzelCountTF = "true"
-        }else if(PretzelCountTF == "true"){
-
-        }
-        
-    }
-        //father.pos.x, father.pos.y
-    )
+    
 
     onUpdate("timer", (t) =>{
             if(PretzelCountTF == "true" && timer.text % 1 === 0){
