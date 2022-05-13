@@ -42,4 +42,4 @@ function wave10() {
     
 }
 
-export{wave2}
+export{wave2};
