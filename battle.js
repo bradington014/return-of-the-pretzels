@@ -138,10 +138,11 @@ scene("battle", () => {
     })
 
     const father = add([
-        // sprite("father"),
-        rect(width() / 28, width() / 28),
-        area(),
-        color(100,100,300),
+        sprite("father"),
+        //rect(width() / 28, width() / 28),
+       // area(),
+        //color(100,100,300),
+        scale(.2),
         pos(width()/1.15, height() / 2),
         origin("center"),
         layer("top"),
@@ -150,8 +151,8 @@ scene("battle", () => {
 
 
     const wall = add([
-        //sprite("wall"),
-        rect(50, height()),
+        sprite("wall"),
+        //rect(50, height()),
         area(),
         //body(),
         pos(width() / 1.2, height() / 2),

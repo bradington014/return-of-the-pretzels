@@ -1,5 +1,5 @@
-//loadSprite("father", )
-//loadSprite("wall", )
+loadSprite("father", "sprites/father.png")
+loadSprite("wall", "sprites/wall.png")
 loadSprite("Lars", "sprites/Lars.png")
 loadSprite("Tex", "sprites/Tex.png")
 loadSprite("Shelldon", "sprites/Shelldon.png")
