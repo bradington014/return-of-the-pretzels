@@ -222,7 +222,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         const enemy = add([
             sprite("pretzel"),
             area(),
-            pos(0, rand(0, height())),
+            pos(0, rand(35, height()-30)),
             layer("top"),
             scale(1.4),
             origin("center"),
