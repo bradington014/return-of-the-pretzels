@@ -8,7 +8,7 @@ import "./tutorial.js";
 import "./story.js";
 
 function start(){
-go('story');
+go('title');
 }
 
 start()
