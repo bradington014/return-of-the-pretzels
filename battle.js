@@ -8,11 +8,13 @@ import{dwaynePowers} from "./powers.js"
 import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
 import{shelldonPowerCollide} from "./powers.js"
+import{larsPowerCollide} from "./powers.js"
 import{wave2} from "./waves.js";
+import{PTIME_COUNT} from "./powers.js"
 
+export{pretzelSpeed}
     const fatherSpeed = height() * 7
-    const pretzelSpeed = 100
-    const health = 10
+    let pretzelSpeed = 100
     const Phealth = 5
     const BSpeed = 700
     const TIME_COUNT = 0
@@ -35,7 +37,7 @@ import{wave2} from "./waves.js";
     var point = 9
     var holder = "tr"
     var stay = "true"
-    var PretzelCount = 0
+    var PretzelCount = TIME_COUNT
     var PretzelCountTF = "false"
 
 scene("battle", () => {
@@ -46,7 +48,7 @@ scene("battle", () => {
     ]);
 
 
-    const health = add([
+    const wlhealth = add([
         text(),
         color(0,300,0),
         pos(width()/1.2, height()/18),
@@ -55,8 +57,8 @@ scene("battle", () => {
         
     ])
 
-    health.onUpdate (() => {
-        health.text = wHealth
+    wlhealth.onUpdate (() => {
+        wlhealth.text = wHealth
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
@@ -65,25 +67,15 @@ onKeyPress("k", ()  => {
     }else if(PretzelCountTF == "true"){
 
     }
+    
 }
+    //father.pos.x, father.pos.y
 )
 
-const enemyCount = add([
-    text('0'),
-    pos(50, 100),
-    scale(2),
-    layer('obj'),
-    "enemyCount",
-    {
-        count: PretzelCount,
-    },
-])
-
-
 const pressK = add([
-        text("Press K to begin the battle"),
+        text("Press K to start begin the battle"),
         color(0, 300, 0),
-        pos(width()/2, height()/2),
+        pos(width()/2 - 50, height()/2),
         origin("center"),
         scale(3.7),
     ])
@@ -93,6 +85,8 @@ const pressK = add([
         pressK.destroy()
         }
     })
+
+
 
     const timer = add([
         text('0'),
@@ -235,7 +229,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             layer("top"),
             scale(1.4),
             origin("center"),
-          //  health(Phealth),
+            health(Phealth),
           //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
@@ -248,19 +242,22 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         console.log(e.speed)
     })
     
+
+    
+
     onUpdate("timer", (t) =>{
             if(PretzelCountTF == "true" && timer.text % 1 === 0){
                 spawnPretzel()
-                PretzelCount = PretzelCount + 1
             } 
     })
 
 
-
     onCollide("bullet", "enemy", (b, e) => {
         destroy(b)
-        destroy(e)
-            e.health = e.heatlh - 2
+            e.hurt(1)
+            if(e.hp() <= 0){
+                destroy(e)
+            }
     })
 
     onCollide("enemy", "wall", (e) =>{
@@ -270,10 +267,6 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         } if (wHealth <= 0){
             go("lose")
         }
-    })
-
-    onCollide("enemy,", "shelldonpowerup",()=>{
-        shelldonPowerCollide();
     })
 
 
@@ -481,6 +474,9 @@ function death (name){
     } else if(name == "Bartholomew"){
         bartholomewPowers()
     }
+
+    shelldonPowerCollide()
+    larsPowerCollide()
 }
 
 function cancel (){
