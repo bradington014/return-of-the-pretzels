@@ -1,5 +1,6 @@
 import "./battle.js";
 import{pretzelSpeed} from "./battle.js"
+import{pretzelDeaths} from "./battle.js"
 
 let PTIME_COUNT = 0
 let freeze = "false"
@@ -178,6 +179,7 @@ let texPowerCollide = function texPowerCollide(){
 let rainettePowerCollide = function rainettePowerCollide(){
     onCollide('enemy','rainettepowerup', (e)=>{
         e.destroy()
+        pretzelDeaths = pretzelDeaths + 1
     })
 }
 
