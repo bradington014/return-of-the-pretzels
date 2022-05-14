@@ -475,6 +475,7 @@ function death (name){
         }),
         origin("center"),
         color(300,200,100),
+        lifespan(2, { fade: 0.5 }),
     ]) 
     if(name == "Lars"){
         larsPowers()
