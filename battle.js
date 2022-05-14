@@ -14,7 +14,9 @@ import{PTIME_COUNT} from "./powers.js"
 
 export{pretzelSpeed}
     const fatherSpeed = height() * 7
+
     let pretzelSpeed = 100
+
     const Phealth = 5
     const BSpeed = 700
     const TIME_COUNT = 0
@@ -39,6 +41,8 @@ export{pretzelSpeed}
     var stay = "true"
     var PretzelCount = TIME_COUNT
     var PretzelCountTF = "false"
+    var attacking = false
+    var pretzelDeaths = 0
 
 scene("battle", () => {
     
@@ -62,6 +66,7 @@ scene("battle", () => {
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
+    attacking = true
     if(PretzelCountTF == "false"){
     PretzelCountTF = "true"
     }else if(PretzelCountTF == "true"){
@@ -222,6 +227,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     function spawnPretzel() {
+        if (attacking == true) {
         const enemy = add([
             sprite("pretzel"),
             area(),
@@ -234,12 +240,11 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
-        
+    }
     }
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
-        console.log(e.speed)
     })
     
 
@@ -257,8 +262,11 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             e.hurt(1)
             if(e.hp() <= 0){
                 destroy(e)
+               pretzelDeaths = pretzelDeaths + 1
             }
+
     })
+   
 
     onCollide("enemy", "wall", (e) =>{
         destroy(e)
@@ -483,7 +491,9 @@ function cancel (){
    
 }
 
+if (pretzelDeaths = 5) {wave1()}
+if (pretzelDeaths = 10) {wave2()}
 
-
+export {TIME_COUNT, pretzelSpeed};
 
 
