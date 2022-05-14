@@ -22,7 +22,7 @@ export{waveNum}
 
     let pretzelSpeed = 100
 
-    const Phealth = 5
+    let Phealth = 5
     const BSpeed = 700
     const KPOS = height() / 9
     const NPOS = height()/23
@@ -32,7 +32,7 @@ export{waveNum}
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
-    let waveNum = 0
+    let waveNum = 1
     let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
@@ -44,10 +44,10 @@ export{waveNum}
     var point = 9
     var holder = "tr"
     var stay = "true"
-    let PretzelCount = 5
     var PretzelCountTF = "false"
     let attacking = "false"
     let pretzelDeaths = 0
+    let PretzelCount = 5
 
 scene("battle", () => {
     
@@ -71,7 +71,6 @@ scene("battle", () => {
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
-    attacking = "true"
     if(PretzelCountTF == "false"){
     PretzelCountTF = "true"
     }else if(PretzelCountTF == "true"){
@@ -149,6 +148,30 @@ const pressK = add([
 
     onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
+
+    })
+
+    onKeyPress("left", ()  => {
+        spawnBullet(father.pos.x, father.pos.y)
+
+        spawnBullet(father.pos, father.pos.y - 150)
+        spawnBullet(father.pos.x, father.pos.y - 250)
+        spawnBullet(father.pos.x, father.pos.y - 350)
+        spawnBullet(father.pos.x, father.pos.y - 50)
+        spawnBullet(father.pos, father.pos.y + 150)
+        spawnBullet(father.pos.x, father.pos.y + 250)
+        spawnBullet(father.pos.x, father.pos.y + 350)
+        spawnBullet(father.pos.x, father.pos.y + 50)
+        spawnBullet(father.pos, father.pos.y - 100)
+        spawnBullet(father.pos.x, father.pos.y - 200)
+        spawnBullet(father.pos.x, father.pos.y - 300)
+        spawnBullet(father.pos.x, father.pos.y - 400)
+        spawnBullet(father.pos, father.pos.y + 100)
+        spawnBullet(father.pos.x, father.pos.y + 200)
+        spawnBullet(father.pos.x, father.pos.y + 300)
+        spawnBullet(father.pos.x, father.pos.y + 400)
+        spawnBullet(father.pos.x, father.pos.y + 75)
+        spawnBullet(father.pos.x, father.pos.y - 75)
     })
 
     const father = add([
@@ -249,6 +272,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             if(e.hp() <= 0){
                 destroy(e)
                pretzelDeaths = pretzelDeaths + 1
+               console.log(pretzelDeaths)
             }
 
     })
@@ -265,11 +289,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onUpdate(()=>{
-        if (waveNum = 1) {
+        if (waveNum === 1) {
+           // PretzelCountTF = "false"
             wave1()
-            PretzelCount = 10
-            pretzelDeaths = 0
-         }else if (PretzelCount = PretzelDeaths) {
+         }else if (waveNum === 2) {
             wave2()
         } 
     })

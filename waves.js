@@ -2,27 +2,27 @@ import {PretzelCount, pretzelSpeed, attacking, pretzelDeaths} from "./battle.js"
 import{waveNum} from "./battle.js"
 
 
-let wave1 = function wave1() {
-    
-    console.log('wave 2')
 
-    if(pretzelDeaths == PretzelCount){
-        waveNum = waveNum + 1
+let wave1 = function wave1() {
+    if(pretzelDeaths === 5){
+        console.log('wave 2')
+         console.log(waveNum)
+         waveNum = waveNum + 1
+        
     }
     
 }
 
 let wave2 = function wave2() {
     
-    PretzelCount = 0
-    
-    attacking = "false"
+   // PretzelCount = 0
+
     
 
 }
 
 function wave3() {
-    if (pretzelDeaths = 20) {
+    if (pretzelDeaths === 20) {
         PretzelCount = 0
         text("press k to start wave 3!"),
 
