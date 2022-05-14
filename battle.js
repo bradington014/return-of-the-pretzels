@@ -47,7 +47,7 @@ export{waveNum}
     var PretzelCountTF = "false"
     let attacking = "false"
     var pretzelDeaths = 0
-    var PretzelCount = 5
+    var PretzelCount = 0
 
 scene("battle", () => {
     
@@ -272,7 +272,6 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             if(e.hp() <= 0){
                 destroy(e)
                pretzelDeaths = pretzelDeaths + 1
-               console.log(pretzelDeaths)
             }
 
     })
@@ -288,12 +287,24 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     })
 
 
+    // onUpdate(()=>{
+    //     if (waveNum === 1) {
+    //        // PretzelCountTF = "false"
+    //         wave1()
+    //      }else if (waveNum === 2) {
+    //         wave2()
+    //     } 
+    // })
+
     onUpdate(()=>{
-        if (waveNum === 1) {
+        if (pretzelDeaths === 0) {
            // PretzelCountTF = "false"
-            wave1()
-         }else if (waveNum === 2) {
-            wave2()
+            PretzelCount = 10
+            waveNum = 1
+         }else if (pretzelDeaths === 10 && TIME_COUNT % 10 ===0) {
+            pretzelSpeed = 200
+            PretzelCount = 20
+            waveNum = 2
         } 
     })
 

@@ -1,34 +1,32 @@
-import {PretzelCount, pretzelSpeed, attacking, pretzelDeaths} from "./battle.js"
+import {PretzelCount} from "./battle.js"
+    
+import{pretzelSpeed} from "./battle.js"
+import {pretzelDeaths} from "./battle.js"
 import{waveNum} from "./battle.js"
+import{larsPowers} from "./powers.js"
+
 
 
 
 let wave1 = function wave1() {
-    if(pretzelDeaths === 5){
-        console.log('wave 2')
-         waveNum = 2
-         console.log(waveNum)
-    }
-    
+    pretzelSpeed = 100
 }
 
 let wave2 = function wave2() {
     
-   // PretzelCount = 0
-
-    
+  pretzelSpeed = 200
 
 }
 
-function wave3() {
-    if (pretzelDeaths === 20) {
-        PretzelCount = 0
-        text("press k to start wave 3!"),
+// function wave3() {
+//     if (pretzelDeaths === 20) {
+//         PretzelCount = 0
+//         text("press k to start wave 3!"),
 
-        pretzelSpeed = 100,
-        { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) }
-    }
-}
+//         pretzelSpeed = 100,
+//         { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) }
+//     }
+// }
 
 function wave4() {
     
