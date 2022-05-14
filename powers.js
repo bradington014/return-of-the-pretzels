@@ -51,14 +51,15 @@ let shelldonPowers = function shelldonPowers(){
 
 let rainettePowers = function rainettePowers(){
     add([
-        rect(width()/1.225,height()),
-        pos(width()/2.475,height()/2),
+        rect(width()/1.225,height()/10),
+        pos(width()/2.475,0),
         color(160,160,160),
         area(),
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(.2),
+        body(),
+        lifespan(10),
         layer("wall"),
         'rainettepowerup',
     ])
