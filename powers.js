@@ -109,6 +109,7 @@ let larsPowerCollide = function larsPowerCollide(){
         e.speed = 0
         powerTimer()
     })
+    
 }
 
 
@@ -130,6 +131,7 @@ function powerTimer (){
         pTimer.text = pTimer.time.toFixed(2)
 
     })
+    
 
 }
 
