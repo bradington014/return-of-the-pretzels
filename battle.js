@@ -7,11 +7,16 @@ import{ivyPowers} from "./powers.js"
 import{dwaynePowers} from "./powers.js"
 import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
-import{wave1, wave2} from "./waves.js"
+import{shelldonPowerCollide} from "./powers.js"
+import{larsPowerCollide} from "./powers.js"
+import{wave2} from "./waves.js";
+import{PTIME_COUNT} from "./powers.js"
 
+export{pretzelSpeed}
     const fatherSpeed = height() * 7
-    var pretzelSpeed = 50
-    const health = 10
+
+    let pretzelSpeed = 100
+
     const Phealth = 5
     const BSpeed = 700
     const TIME_COUNT = 0
@@ -47,7 +52,7 @@ scene("battle", () => {
     ]);
 
 
-    const health = add([
+    const wlhealth = add([
         text(),
         color(0,300,0),
         pos(width()/1.2, height()/18),
@@ -56,8 +61,8 @@ scene("battle", () => {
         
     ])
 
-    health.onUpdate (() => {
-        health.text = wHealth
+    wlhealth.onUpdate (() => {
+        wlhealth.text = wHealth
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
@@ -230,7 +235,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             layer("top"),
             scale(1.4),
             origin("center"),
-          //  health(Phealth),
+            health(Phealth),
           //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
@@ -254,11 +259,12 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
     onCollide("bullet", "enemy", (b, e) => {
         destroy(b)
-        destroy(e)
-            e.health = e.heatlh - 2
-        pretzelDeaths = pretzelDeaths + 1
-        console.log(pretzelDeaths)
-        
+            e.hurt(1)
+            if(e.hp() <= 0){
+                destroy(e)
+               pretzelDeaths = pretzelDeaths + 1
+            }
+
     })
    
 
@@ -476,6 +482,9 @@ function death (name){
     } else if(name == "Bartholomew"){
         bartholomewPowers()
     }
+
+    shelldonPowerCollide()
+    larsPowerCollide()
 }
 
 function cancel (){
