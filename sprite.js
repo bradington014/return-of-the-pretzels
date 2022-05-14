@@ -11,6 +11,7 @@ loadSprite("Shuihaizi", "sprites/Shuihaizi.png")
 loadSprite("Bartholomew", "sprites/Bartholomew.png")
 loadSprite("kid", "sprites/kid.png");
 loadSprite("background", "sprites/sapbackground.png");
+loadSprite("arrow", "sprites/arrow.gif");
 
 loadSprite("pretzel", "/sprites/pretzelstrip.png", {
     sliceX: 9,

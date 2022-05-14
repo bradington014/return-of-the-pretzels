@@ -1,12 +1,16 @@
+//sounds
+loadSound("titleMusic","music/pretztitle.mp3");
+loadSound("swords","music/swords.mp3");
+
 scene("title" , () => { 
 
-//loadSound("titleMusic","/music/pretztitle.mp3")
 
 
-//const music = play("titleMusic", {
-//loop: true,
-//})
-//volume(0.5)
+
+const music = play("titleMusic", {
+	loop: true,
+  volume: 0.5,
+})
 
 
 const title = add([
@@ -32,6 +36,11 @@ function addButton(txt, p, f) {
 	])
 
 	btn.onClick(f)
+
+	btn.onClick(() => {
+		play("swords")
+		
+	})
 
 	btn.onUpdate(() => {
 		if (btn.isHovering()) {
