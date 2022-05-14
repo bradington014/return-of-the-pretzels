@@ -6,7 +6,7 @@ import "./lose.js";
 import "./title.js";
 import "./tutorial.js";
 import "./story.js";
-import "./waves.js";
+
 
 function start(){
 go('story');
