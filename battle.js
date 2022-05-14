@@ -14,6 +14,9 @@ import{PTIME_COUNT} from "./powers.js"
 import{texPowerCollide} from "./powers.js"
 import{rainettePowerCollide} from "./powers.js"
 
+//sounds
+loadSound("shot","music/shot.mp3");
+
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum}
@@ -121,12 +124,13 @@ const pressK = add([
 
     function spawnBullet(p, s) {
         add([
-            rect(24, 6),
+            sprite("arrow"),
+            //rect(24, 6),
             area(),
             pos(p, s),
             origin("center"),
-            color(127, 127, 255),
-            outline(4),
+            //color(127, 127, 255),
+            //outline(4),
             move(0, -BSpeed),
             layer("top"),
             cleanup(),
@@ -152,6 +156,7 @@ const pressK = add([
 
     onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
+        play("shot");
 
     })
 
