@@ -13,7 +13,7 @@ import{wave1, wave2} from "./waves.js";
 import{PTIME_COUNT} from "./powers.js"
 
 
-export {PretzelCount, pretzelSpeed, pretzelDeaths};
+export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum}
 
@@ -32,7 +32,7 @@ export{waveNum}
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
-    let waveNum = 1
+    var waveNum = 1
     let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
@@ -72,6 +72,7 @@ scene("battle", () => {
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
     if(PretzelCountTF == "false"){
+    wave1()
     PretzelCountTF = "true"
     }else if(PretzelCountTF == "true"){
 
