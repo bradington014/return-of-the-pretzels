@@ -1,5 +1,13 @@
 scene("title" , () => { 
 
+//loadSound("titleMusic","/music/pretztitle.mp3")
+
+
+//const music = play("titleMusic", {
+//loop: true,
+//})
+//volume(0.5)
+
 
 const title = add([
     text("REVENGE OF THE PRETZELS", {
