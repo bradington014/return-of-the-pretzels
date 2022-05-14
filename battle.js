@@ -9,7 +9,7 @@ import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
 import{shelldonPowerCollide} from "./powers.js"
 import{larsPowerCollide} from "./powers.js"
-import{wave1, wave2} from "./waves.js";
+//import{wave1, wave2} from "./waves.js";
 import{PTIME_COUNT} from "./powers.js"
 
 
@@ -47,7 +47,7 @@ export{waveNum}
     var PretzelCountTF = "false"
     let attacking = "false"
     let pretzelDeaths = 0
-    let PretzelCount = 5
+    var PretzelCount = 5
 
 scene("battle", () => {
     
@@ -72,7 +72,8 @@ scene("battle", () => {
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
     if(PretzelCountTF == "false"){
-    wave1()
+    //wave1()
+    timer.time = 0
     PretzelCountTF = "true"
     }else if(PretzelCountTF == "true"){
 
@@ -115,6 +116,7 @@ const pressK = add([
 
 
     })
+
 
     function spawnBullet(p, s) {
         add([
@@ -503,7 +505,43 @@ function cancel (){
 }
 
 
+function wave1() {
+    if(pretzelDeaths === 5){
+       // PretzelCountTF === "false"
+        PretzelCountTF = "false"
+        
+        const pressK2 = add([
+            text("Press L to start wave 2"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressK2.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressK2.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+           PretzelCountTF = "true"
+           timer.time = 0
+           pretzelDeaths = 0
+           PretzelCount = 10
+           waveNum = waveNum + 1
+           // let pretzelDeaths = 0
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
 
+function wave2(){
+    console.log("YAY")
+}
 
 
 

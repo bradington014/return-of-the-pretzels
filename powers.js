@@ -17,7 +17,6 @@ let larsPowers = function larsPowers(){
         layer("wall"),
         'larspowerup',
     ])
-    
 }
 
 let texPowers = function texPowers(){
@@ -37,7 +36,7 @@ let shelldonPowers = function shelldonPowers(){
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(1),
+        lifespan(5),
         layer("wall"),
         'shelldonpowerup',
     ])

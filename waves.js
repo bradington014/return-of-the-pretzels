@@ -3,30 +3,38 @@ import{waveNum} from "./battle.js"
 
 
 
-function wave1() {
-    if(pretzelDeaths == 5){
-        PretzelCountTF == "false"
+function wave1(wave,TF,C, D) {
+    if(pretzelDeaths === 5){
+       // PretzelCountTF === "false"
+        wave = wave + 1
+        TF = "false"
         console.log('wave 2') 
-        waveNum++
-        console.log(waveNum)
+        console.log(wave)
+        console.log(TF)
+        console.log(C)
         
-        const pressK = add([
-            text("Press K to start wave 2"),
+        const pressK2 = add([
+            text("Press L to start wave 2"),
             color(0, 300, 0),
             pos(width()/2 - 50, height()/2),
             origin("center"),
             scale(3.7),
         ])
     
-        pressK.onUpdate(()=>{
-            if(PretzelCountTF == "true"){
-            pressK.destroy()
+        pressK2.onUpdate(()=>{
+            if(TF == "true"){
+            pressK2.destroy()
             }
         })
     }
-    onKeyPress('k', () => {
-        if (PretzelCountTF == "false") {
-            PretzelCountTF == "true"
+    onKeyPress("l", () => {
+        if (TF == "false") {
+            TF = "true"
+            C = 10
+           // let pretzelDeaths = 0
+            console.log("pretzelDeaths =" + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
         }
     })
 }
