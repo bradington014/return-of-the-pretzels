@@ -1,30 +1,30 @@
-import {TIME_COUNT, pretzelSpeed} from "./battle.js"
-
-var wave = 0
-
+import {PretzelCount, pretzelSpeed, attacking, pretzelDeaths} from "./battle.js"
+import{waveNum} from "./battle.js"
 
 
-function wave1() {
+let wave1 = function wave1() {
     
     console.log('wave 2')
-    wave = wave + 1,
-    TIME_COUNT == 0
+
+    if(pretzelDeaths == PretzelCount){
+        waveNum = waveNum + 1
+    }
     
 }
 
 let wave2 = function wave2() {
     
-    TIME_COUNT == 0
+    PretzelCount = 0
     
-    attacking = false
+    attacking = "false"
     
 
 }
 
 function wave3() {
-    if (pretzelDeaths == 20) {
-        TIME_COUNT == 0
-        Text("press k to start wave 3!"),
+    if (pretzelDeaths = 20) {
+        PretzelCount = 0
+        text("press k to start wave 3!"),
 
         pretzelSpeed = 100,
         { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) }

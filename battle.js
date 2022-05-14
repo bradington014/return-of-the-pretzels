@@ -9,17 +9,21 @@ import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
 import{shelldonPowerCollide} from "./powers.js"
 import{larsPowerCollide} from "./powers.js"
-import{wave2} from "./waves.js";
+import{wave1, wave2} from "./waves.js";
 import{PTIME_COUNT} from "./powers.js"
 
-export{pretzelSpeed}
+
+export {PretzelCount, pretzelSpeed, pretzelDeaths};
+export {attacking};
+export{waveNum}
+
+
     const fatherSpeed = height() * 7
 
     let pretzelSpeed = 100
 
     const Phealth = 5
     const BSpeed = 700
-    const TIME_COUNT = 0
     const KPOS = height() / 9
     const NPOS = height()/23
     const WPOS = height()/13.2
@@ -28,21 +32,22 @@ export{pretzelSpeed}
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
+    let waveNum = 0
+    let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
     var FMove = 5
     var BDMG = 1
     var BRELOAD = 3
     var KSPEED = 100
-    var wave = 0
     var TexScript = "false"
     var point = 9
     var holder = "tr"
     var stay = "true"
-    var PretzelCount = TIME_COUNT
+    let PretzelCount = 5
     var PretzelCountTF = "false"
-    var attacking = false
-    var pretzelDeaths = 0
+    let attacking = "false"
+    let pretzelDeaths = 0
 
 scene("battle", () => {
     
@@ -66,7 +71,7 @@ scene("battle", () => {
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
-    attacking = true
+    attacking = "true"
     if(PretzelCountTF == "false"){
     PretzelCountTF = "true"
     }else if(PretzelCountTF == "true"){
@@ -126,21 +131,6 @@ const pressK = add([
         ])
     }
 
-    // onKeyPress("up", () => {
-
-    //     if (father.pos.y > 0 && FMove < 9) {
-    //         father.move(0, -fatherSpeed)
-    //         FMove += 1
-    //     }
-    // })
-
-    // onKeyPress("down", () => {
-
-    //     if (father.pos.y < height() && FMove > 1) {
-    //         father.move(0, fatherSpeed)
-    //         FMove -= 1
-    //     }
-    // })
 
     onKeyDown("up", () => {
 
@@ -159,14 +149,10 @@ const pressK = add([
 
     onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
-        //father.pos.x, father.pos.y
     })
 
     const father = add([
         sprite("father"),
-        //rect(width() / 28, width() / 28),
-       // area(),
-        //color(100,100,300),
         scale(KSCALE),
         pos(width()/1.15, height() / 2),
         origin("center"),
@@ -227,7 +213,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     function spawnPretzel() {
-        if (attacking == true) {
+       
         const enemy = add([
             sprite("pretzel"),
             area(),
@@ -241,7 +227,6 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
     }
-    }
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
@@ -251,8 +236,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     
 
     onUpdate("timer", (t) =>{
-            if(PretzelCountTF == "true" && timer.text % 1 === 0){
+            if(PretzelCountTF == "true" && timer.text % 1 === 0 && PretzelCount > 0){
                 spawnPretzel()
+                PretzelCount = PretzelCount - 1
             } 
     })
 
@@ -278,6 +264,16 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     })
 
 
+    onUpdate(()=>{
+        if (waveNum = 1) {
+            wave1()
+            PretzelCount = 10
+            pretzelDeaths = 0
+         }else if (PretzelCount = PretzelDeaths) {
+            wave2()
+        } 
+    })
+
     onUpdate("tr", (t)=>{
         destroy(t)
     })
@@ -296,15 +292,6 @@ function addChild(name, posx, posy, sac, power) {
         origin("center"),
         name
     ])
-    // child.onClick(() =>{
-    //     holder = ""
-    // })
-
-    // child.onUpdate(()=>{
-    //     if(stay = "true"){
-    //         child.onClick(sac)
-    //     }
-    // })
 
     child.onClick(sac)
     
@@ -491,9 +478,8 @@ function cancel (){
    
 }
 
-if (pretzelDeaths = 5) {wave1()}
-if (pretzelDeaths = 10) {wave2()}
 
-export {TIME_COUNT, pretzelSpeed};
+
+
 
 

@@ -109,7 +109,7 @@ let larsPowerCollide = function larsPowerCollide(){
         e.speed = 0
         powerTimer()
     })
-    
+
 }
 
 
