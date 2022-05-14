@@ -11,7 +11,8 @@ import{shelldonPowerCollide} from "./powers.js"
 import{larsPowerCollide} from "./powers.js"
 //import{wave1, wave2} from "./waves.js";
 import{PTIME_COUNT} from "./powers.js"
-
+import{texPowerCollide} from "./powers.js"
+import{rainettePowerCollide} from "./powers.js"
 
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
@@ -499,6 +500,8 @@ function death (name){
 
     shelldonPowerCollide()
     larsPowerCollide()
+    texPowerCollide()
+    rainettePowerCollide()
 }
 
 function cancel (){
