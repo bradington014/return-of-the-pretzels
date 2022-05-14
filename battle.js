@@ -10,7 +10,9 @@ import{bartholomewPowers} from "./powers.js"
 import{shelldonPowerCollide} from "./powers.js"
 import{larsPowerCollide} from "./powers.js"
 import{wave2} from "./waves.js";
+import{PTIME_COUNT} from "./powers.js"
 
+export{pretzelSpeed}
     const fatherSpeed = height() * 7
     let pretzelSpeed = 100
     const Phealth = 5

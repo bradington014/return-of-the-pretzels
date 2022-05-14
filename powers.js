@@ -1,4 +1,5 @@
 import "./battle.js";
+import{pretzelSpeed} from "./battle.js"
 
 let PTIME_COUNT = 0
 let freeze = "false"
@@ -110,6 +111,8 @@ let larsPowerCollide = function larsPowerCollide(){
     })
 }
 
+
+
 function powerTimer (){
     const pTimer = add([
         text('0'),
@@ -133,4 +136,4 @@ function powerTimer (){
 
 
 
-export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide};
+export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide, PTIME_COUNT};
