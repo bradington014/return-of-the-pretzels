@@ -32,7 +32,7 @@ export{waveNum}
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
-    let waveNum = 1
+    var waveNum = 1
     let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
@@ -46,8 +46,8 @@ export{waveNum}
     var stay = "true"
     var PretzelCountTF = "false"
     let attacking = "false"
-    let pretzelDeaths = 0
-    let PretzelCount = 5
+    var pretzelDeaths = 0
+    var PretzelCount = 5
 
 scene("battle", () => {
     

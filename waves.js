@@ -6,9 +6,8 @@ import{waveNum} from "./battle.js"
 let wave1 = function wave1() {
     if(pretzelDeaths === 5){
         console.log('wave 2')
+         waveNum = 2
          console.log(waveNum)
-         waveNum = waveNum + 1
-        
     }
     
 }
