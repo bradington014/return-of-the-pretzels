@@ -1,4 +1,16 @@
+//sounds
+loadSound("titleMusic","music/pretztitle.mp3");
+loadSound("swords","music/swords.mp3");
+
 scene("title" , () => { 
+
+
+
+
+const music = play("titleMusic", {
+	loop: true,
+  volume: 0.5,
+})
 
 
 const title = add([
@@ -25,6 +37,11 @@ function addButton(txt, p, f) {
 
 	btn.onClick(f)
 
+	btn.onClick(() => {
+		play("swords")
+		
+	})
+
 	btn.onUpdate(() => {
 		if (btn.isHovering()) {
 			const t = time() * 10
@@ -42,6 +59,6 @@ function addButton(txt, p, f) {
 
 }
 
-addButton("play", vec2(width()/2, height()/3), () => go("battle"))
-addButton("tutorial", vec2(width()/2, height()/2), () => go("tutorial"))
+addButton("Play", vec2(width()/2, height()/3), () => go("battle"))
+addButton("Tutorial", vec2(width()/2, height()/2), () => go("tutorial"))
 })

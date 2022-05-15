@@ -8,14 +8,28 @@ import{dwaynePowers} from "./powers.js"
 import{shuihaiziPowers} from "./powers.js"
 import{bartholomewPowers} from "./powers.js"
 import{shelldonPowerCollide} from "./powers.js"
-import{wave2} from "./waves.js";
+import{larsPowerCollide} from "./powers.js"
+import{PTIME_COUNT} from "./powers.js"
+import{texPowerCollide} from "./powers.js"
+import{rainettePowerCollide} from "./powers.js"
+
+
+//sounds
+loadSound("shot","music/shot.mp3");
+
+
+
+export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
+export {attacking};
+export{waveNum}
+
 
     const fatherSpeed = height() * 7
-    const pretzelSpeed = 100
-    const health = 10
-    const Phealth = 5
+
+    let pretzelSpeed = 100
+
+    let Phealth = 3
     const BSpeed = 700
-    const TIME_COUNT = 0
     const KPOS = height() / 9
     const NPOS = height()/23
     const WPOS = height()/13.2
@@ -24,19 +38,22 @@ import{wave2} from "./waves.js";
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
+    let waveNum = 0
+    let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
     var FMove = 5
     var BDMG = 1
     var BRELOAD = 3
     var KSPEED = 100
-    var wave = 0
     var TexScript = "false"
     var point = 9
     var holder = "tr"
     var stay = "true"
-    var PretzelCount = 0
     var PretzelCountTF = "false"
+    let attacking = "false"
+    let pretzelDeaths = 0
+    var PretzelCount = 5
 
 scene("battle", () => {
     var PretzelCountTF = "false"
@@ -48,7 +65,7 @@ scene("battle", () => {
     ]);
 
 
-    const health = add([
+    const wlhealth = add([
         text(),
         color(0,300,0),
         pos(width()/1.2, height()/18),
@@ -57,35 +74,28 @@ scene("battle", () => {
         
     ])
 
-    health.onUpdate (() => {
-        health.text = wHealth
+    wlhealth.onUpdate (() => {
+        wlhealth.text = wHealth
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
-    if(PretzelCountTF == "false"){
+    if(PretzelCountTF == "false" && waveNum === 0){
+    //wave1()
+    timer.time = 0
     PretzelCountTF = "true"
+    waveNum = 1
     }else if(PretzelCountTF == "true"){
 
     }
+    
 }
+    //father.pos.x, father.pos.y
 )
 
-const enemyCount = add([
-    text('0'),
-    pos(50, 100),
-    scale(2),
-    layer('obj'),
-    "enemyCount",
-    {
-        count: PretzelCount,
-    },
-])
-
-
 const pressK = add([
-        text("Press K to begin the battle"),
+        text("Press K to start begin the battle"),
         color(0, 300, 0),
-        pos(width()/2, height()/2),
+        pos(width()/2 - 50, height()/2),
         origin("center"),
         scale(3.7),
     ])
@@ -95,6 +105,8 @@ const pressK = add([
         pressK.destroy()
         }
     })
+
+
 
     const timer = add([
         text('0'),
@@ -114,14 +126,16 @@ const pressK = add([
 
     })
 
+
     function spawnBullet(p, s) {
         add([
-            rect(24, 6),
+            sprite("arrow"),
+            //rect(24, 6),
             area(),
             pos(p, s),
             origin("center"),
-            color(127, 127, 255),
-            outline(4),
+            //color(127, 127, 255),
+            //outline(4),
             move(0, -BSpeed),
             layer("top"),
             cleanup(),
@@ -129,21 +143,6 @@ const pressK = add([
         ])
     }
 
-    // onKeyPress("up", () => {
-
-    //     if (father.pos.y > 0 && FMove < 9) {
-    //         father.move(0, -fatherSpeed)
-    //         FMove += 1
-    //     }
-    // })
-
-    // onKeyPress("down", () => {
-
-    //     if (father.pos.y < height() && FMove > 1) {
-    //         father.move(0, fatherSpeed)
-    //         FMove -= 1
-    //     }
-    // })
 
     onKeyDown("up", () => {
 
@@ -162,14 +161,35 @@ const pressK = add([
 
     onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
-        //father.pos.x, father.pos.y
+        play("shot");
+
+    })
+
+    onKeyPress("left", ()  => {
+        spawnBullet(father.pos.x, father.pos.y)
+
+        spawnBullet(father.pos, father.pos.y - 150)
+        spawnBullet(father.pos.x, father.pos.y - 250)
+        spawnBullet(father.pos.x, father.pos.y - 350)
+        spawnBullet(father.pos.x, father.pos.y - 50)
+        spawnBullet(father.pos, father.pos.y + 150)
+        spawnBullet(father.pos.x, father.pos.y + 250)
+        spawnBullet(father.pos.x, father.pos.y + 350)
+        spawnBullet(father.pos.x, father.pos.y + 50)
+        spawnBullet(father.pos, father.pos.y - 100)
+        spawnBullet(father.pos.x, father.pos.y - 200)
+        spawnBullet(father.pos.x, father.pos.y - 300)
+        spawnBullet(father.pos.x, father.pos.y - 400)
+        spawnBullet(father.pos, father.pos.y + 100)
+        spawnBullet(father.pos.x, father.pos.y + 200)
+        spawnBullet(father.pos.x, father.pos.y + 300)
+        spawnBullet(father.pos.x, father.pos.y + 400)
+        spawnBullet(father.pos.x, father.pos.y + 75)
+        spawnBullet(father.pos.x, father.pos.y - 75)
     })
 
     const father = add([
         sprite("father"),
-        //rect(width() / 28, width() / 28),
-       // area(),
-        //color(100,100,300),
         scale(KSCALE),
         pos(width()/1.15, height() / 2),
         origin("center"),
@@ -230,6 +250,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     function spawnPretzel() {
+       
         const enemy = add([
             sprite("pretzel"),
             area(),
@@ -237,33 +258,39 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             layer("top"),
             scale(1.4),
             origin("center"),
-          //  health(Phealth),
+            health(Phealth),
           //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
-        
     }
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
-        console.log(e.speed)
     })
     
+
+    
+
     onUpdate("timer", (t) =>{
-            if(PretzelCountTF == "true" && timer.text % 1 === 0){
+            if(PretzelCountTF == "true" && timer.text % 1 === 0 && PretzelCount > 0){
                 spawnPretzel()
-                PretzelCount = PretzelCount + 1
+                // PretzelCount = PretzelCount - 1
             } 
     })
 
 
-
     onCollide("bullet", "enemy", (b, e) => {
         destroy(b)
-        destroy(e)
-            e.health = e.heatlh - 2
+            e.hurt(1)
+            if(e.hp() <= 0){
+                destroy(e)
+               pretzelDeaths = pretzelDeaths + 1
+               console.log(pretzelDeaths)
+            }
+
     })
+   
 
     onCollide("enemy", "wall", (e) =>{
         destroy(e)
@@ -274,10 +301,31 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         }
     })
 
-    onCollide("enemy,", "shelldonpowerup",()=>{
-        shelldonPowerCollide();
-    })
 
+    onUpdate(()=>{
+        if (waveNum === 1) {
+           // PretzelCountTF = "false"
+            wave1()
+         }else if (waveNum === 2) {
+            wave2()
+        } else if (waveNum === 3) {
+            wave3()
+        } else if (waveNum === 4) {
+            wave4()
+        } else if (waveNum === 5) {
+            wave5()
+        } else if (waveNum === 6) {
+            wave6()
+        } else if (waveNum === 7) {
+            wave7()
+        } else if (waveNum === 8) {
+            wave8()
+        } else if (waveNum === 9) {
+            wave9()
+        } else if (waveNum === 10) {
+            wave10()
+        } 
+    })
 
     onUpdate("tr", (t)=>{
         destroy(t)
@@ -297,15 +345,6 @@ function addChild(name, posx, posy, sac, power) {
         origin("center"),
         name
     ])
-    // child.onClick(() =>{
-    //     holder = ""
-    // })
-
-    // child.onUpdate(()=>{
-    //     if(stay = "true"){
-    //         child.onClick(sac)
-    //     }
-    // })
 
     child.onClick(sac)
     
@@ -463,6 +502,7 @@ function death (name){
         }),
         origin("center"),
         color(300,200,100),
+        lifespan(2, { fade: 0.5 }),
     ]) 
     if(name == "Lars"){
         larsPowers()
@@ -483,6 +523,11 @@ function death (name){
     } else if(name == "Bartholomew"){
         bartholomewPowers()
     }
+
+    shelldonPowerCollide()
+    larsPowerCollide()
+    texPowerCollide()
+    rainettePowerCollide()
 }
 
 function cancel (){
@@ -490,6 +535,343 @@ function cancel (){
 }
 
 
+function wave1() {
+    if(pretzelDeaths === 5){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 2"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false" && waveNum === 1) {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 5
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave2(){
+
+    pretzelSpeed = 125
+    Phealth = 4
 
 
+    if(pretzelDeaths === 6){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 3"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 6
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
 
+function wave3(){
+
+    pretzelSpeed = 150
+    Phealth = 5
+
+
+    if(pretzelDeaths === 7){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 4"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 7
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave4(){
+
+    pretzelSpeed = 160
+    Phealth = 5
+
+
+    if(pretzelDeaths === 8){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 5"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 8
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave5(){
+
+    pretzelSpeed = 200
+    Phealth = 6
+
+
+    if(pretzelDeaths === 9){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 6"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 9
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave6(){
+
+    pretzelSpeed = 200
+    Phealth = 7
+
+    if(pretzelDeaths === 10){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 7"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 10
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave7(){
+
+    pretzelSpeed = 215
+    Phealth = 7
+
+    if(pretzelDeaths === 12){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 8"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 12
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave8(){
+
+    pretzelSpeed = 230
+    Phealth = 8
+
+    if(pretzelDeaths === 14){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 9"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 14
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave9(){
+
+    pretzelSpeed = 245
+    Phealth = 9
+
+    if(pretzelDeaths === 15){
+        PretzelCountTF = "false"
+        
+        const pressL = add([
+            text("Press L to start wave 10"),
+            color(0, 300, 0),
+            pos(width()/2 - 50, height()/2),
+            origin("center"),
+            scale(3.7),
+        ])
+    
+        pressL.onUpdate(()=>{
+            if(PretzelCountTF == "true"){
+            pressL.destroy()
+            }
+        })
+    }
+    onKeyPress("l", () => {
+        if (PretzelCountTF == "false") {
+            PretzelCountTF = "true"
+            timer.time = 0
+            pretzelDeaths = 0
+            PretzelCount = 15
+            waveNum = waveNum + 1
+            console.log("pretzelDeaths = " + pretzelDeaths)
+            console.log(PretzelCount)
+            console.log(PretzelCountTF)
+        }
+    })
+}
+
+function wave10(){
+
+    pretzelSpeed = 250
+    Phealth = 10
+
+    if(pretzelDeaths === 20){
+        PretzelCountTF = "false"
+        go('win')
+    }
+}
+
+scene("win", () => {
+    add([
+        text('you win')
+    ])
+})
