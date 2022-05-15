@@ -90,6 +90,7 @@ export{waveNum}
         let pretzelDeaths = 0
         var PretzelCount = 5
 
+
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
