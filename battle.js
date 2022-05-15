@@ -39,7 +39,9 @@ import{wave2} from "./waves.js";
     var PretzelCountTF = "false"
 
 scene("battle", () => {
-    
+    var PretzelCountTF = "false"
+    var wHealth = 10
+
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
