@@ -9,7 +9,7 @@ scene("title" , () => {
 
 const music = play("titleMusic", {
 	loop: true,
-  volume: 0.5,
+  volume: 0.1,
 })
 
 
