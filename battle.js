@@ -23,6 +23,8 @@ export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum}
 
+//resetting every variable
+
 
     const fatherSpeed = height() * 7
 
@@ -55,9 +57,38 @@ export{waveNum}
     let pretzelDeaths = 0
     var PretzelCount = 5
 
-scene("battle", () => {
-    var PretzelCountTF = "false"
-    var wHealth = 10
+    scene("battle", () => {
+
+        const fatherSpeed = height() * 7
+
+        let pretzelSpeed = 100
+    
+        let Phealth = 3
+        const BSpeed = 700
+        const KPOS = height() / 9
+        const NPOS = height()/23
+        const WPOS = height()/13.2
+        const KSCALE = (height() + width ()) / 6875
+        const BKSCALE = (height() + width ()) / 5500
+        const NtextScale = 1
+        const BtextScale = 1.25
+        const wS = .5
+        let waveNum = 0
+        let TIME_COUNT = 0
+        let AKSCALE = KSCALE
+        var wHealth = 10
+        var FMove = 5
+        var BDMG = 1
+        var BRELOAD = 3
+        var KSPEED = 100
+        var TexScript = "false"
+        var point = 9
+        var holder = "tr"
+        var stay = "true"
+        var PretzelCountTF = "false"
+        let attacking = "false"
+        let pretzelDeaths = 0
+        var PretzelCount = 5
 
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
