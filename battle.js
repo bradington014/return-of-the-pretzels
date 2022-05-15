@@ -56,7 +56,9 @@ export{waveNum}
     var PretzelCount = 5
 
 scene("battle", () => {
-    
+    var PretzelCountTF = "false"
+    var wHealth = 10
+
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
