@@ -23,7 +23,6 @@ export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum}
 
-//resetting every variable
 
 
     const fatherSpeed = height() * 7
@@ -59,10 +58,10 @@ export{waveNum}
 
     scene("battle", () => {
 
-        const fatherSpeed = height() * 7
+        //resetting every variable
 
+        const fatherSpeed = height() * 7
         let pretzelSpeed = 100
-    
         let Phealth = 3
         const BSpeed = 700
         const KPOS = height() / 9
