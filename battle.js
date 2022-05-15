@@ -38,7 +38,7 @@ export{waveNum}
     const NtextScale = 1
     const BtextScale = 1.25
     const wS = .5
-    let waveNum = 1
+    let waveNum = 0
     let TIME_COUNT = 0
     let AKSCALE = KSCALE
     var wHealth = 10
@@ -77,10 +77,11 @@ scene("battle", () => {
     })
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
-    if(PretzelCountTF == "false"){
+    if(PretzelCountTF == "false" && waveNum === 0){
     //wave1()
     timer.time = 0
     PretzelCountTF = "true"
+    waveNum = 1
     }else if(PretzelCountTF == "true"){
 
     }
@@ -551,7 +552,7 @@ function wave1() {
         })
     }
     onKeyPress("l", () => {
-        if (PretzelCountTF == "false") {
+        if (PretzelCountTF == "false" && waveNum === 1) {
             PretzelCountTF = "true"
             timer.time = 0
             pretzelDeaths = 0
