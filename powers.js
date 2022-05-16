@@ -166,7 +166,7 @@ let larsPowerCollide = function larsPowerCollide(){
             e.speed = pretzelSpeed;
         })
         
-        powerTimer()
+        
     })
 
 }
@@ -183,7 +183,7 @@ let texPowerCollide = function texPowerCollide(){
         wait(3, () => {
             e.hurt(1)
         })
-        powerTimer()
+        
     })
 
 }
@@ -205,24 +205,6 @@ let rainaPowerCollide = function rainaPowerCollide(){
 
 
 
-function powerTimer (){
-    const pTimer = add([
-        text('0'),
-        pos(300, 50),
-        scale(2),
-        layer('obj'),
-        "pTimer",
-        {
-            time: PTIME_COUNT,
-        },
-    ])
-
-    pTimer.onUpdate(() => {
-        pTimer.time += dt()
-        pTimer.text = pTimer.time.toFixed(2)
-
-    })
-}
 
 
 
