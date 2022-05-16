@@ -80,13 +80,13 @@ export{waveNum}
         var BDMG = 1
         var BRELOAD = 3
         var KSPEED = 100
-        var TexScript = "false"
+        //var TexScript = "false"
         var point = 9
         var holder = "tr"
         var stay = "true"
         var PretzelCountTF = "false"
         let attacking = "false"
-        let pretzelDeaths = 0
+       // let pretzelDeaths = 0
         var PretzelCount = 5
 
 
