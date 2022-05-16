@@ -20,6 +20,7 @@ loadSound("musicB","music/battle music.mp3");
 loadSound("musicC", "music/sacrafice.wav");
 
 
+
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum};
@@ -301,6 +302,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
+        enemy.play("run")
     }
 
     onUpdate("enemy", (e) =>{
