@@ -1,4 +1,12 @@
+
+loadSound("musicD", "music/beforebattle.wav");
+
 scene("tutorial", () => {
+
+const music4 = play("musicD",{
+	loop:true,
+	volume: 0.5,
+})
 
 const tutorialText = add([
     text("this is the tutorial."),
@@ -17,7 +25,9 @@ function addButton(txt, p, f) {
 	])
 
 	btn.onClick(f)
-
+	btn.onClick(() => {
+		music4.pause();
+	})
 	btn.onUpdate(() => {
 		if (btn.isHovering()) {
 			const t = time() * 10
