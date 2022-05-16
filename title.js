@@ -60,5 +60,5 @@ function addButton(txt, p, f) {
 }
 
 addButton("Play", vec2(width()/2, height()/3), () => go("battle"))
-addButton("Tutorial", vec2(width()/2, height()/2), () => go("tutorial"))
+addButton("Instructions", vec2(width()/2, height()/2), () => go("tutorial"))
 })
