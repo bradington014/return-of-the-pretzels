@@ -335,6 +335,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         if(wHealth > 0){
             wHealth = wHealth - 1
         } if (wHealth <= 0){
+            music2.pause(),
             go("lose")
         }
     })
@@ -570,7 +571,7 @@ function death (name){
     const music3 = play("musicC", {
         volume: 0.3
     })
-    
+
     music2.pause();
     wait(5, () => {
         music2.play()
