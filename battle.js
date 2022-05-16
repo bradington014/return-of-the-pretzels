@@ -23,10 +23,7 @@ export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum};
 
-    const music2 = play("musicB", {
-      loop: true,
-        volume: 0.1,
-    })
+
 
 
     const fatherSpeed = height() * 7
@@ -62,6 +59,12 @@ export{waveNum};
 
     scene("battle", () => {
 
+
+        const music2 = play("musicB", {
+            loop: true,
+              volume: 0.3,
+          })
+          
         //resetting every variable
 
         const fatherSpeed = height() * 7
