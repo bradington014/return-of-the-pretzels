@@ -16,13 +16,18 @@ import{rainettePowerCollide} from "./powers.js"
 
 //sounds
 loadSound("shot","music/shot.mp3");
-
+loadSound("musicB","music/battle music.mp3");
 
 
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
-export{waveNum}
+export{waveNum};
 
+
+    const music = play("musicB", {
+      loop: true,
+        volume: 0.1,
+    })
 
 
     const fatherSpeed = height() * 7
