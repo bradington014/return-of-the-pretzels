@@ -568,7 +568,19 @@ function death (name){
     texPowerCollide()
     rainettePowerCollide()
      rainaPowerCollide()
+  
 
+
+    const music3 = play("musicC", {
+        volume: 0.3
+    })
+
+    music2.pause();
+    wait(5, () => {
+        music2.play()
+        music3.pause()
+    })
+}
 
 function cancel (){
    
