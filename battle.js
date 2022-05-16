@@ -17,6 +17,7 @@ import{rainettePowerCollide} from "./powers.js"
 //sounds
 loadSound("shot","music/shot.mp3");
 loadSound("musicB","music/battle music.mp3");
+loadSound("musicC", "music/sacrafice.wav");
 
 
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
@@ -64,7 +65,7 @@ export{waveNum};
             loop: true,
               volume: 0.3,
           })
-          
+
         //resetting every variable
 
         const fatherSpeed = height() * 7
@@ -565,6 +566,17 @@ function death (name){
     larsPowerCollide()
     texPowerCollide()
     rainettePowerCollide()
+
+    const music3 = play("musicC", {
+        volume: 0.3
+    })
+    
+    music2.pause();
+    wait(5, () => {
+        music2.play()
+        music3.pause()
+    })
+
 }
 
 function cancel (){
