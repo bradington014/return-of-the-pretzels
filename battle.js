@@ -12,11 +12,12 @@ import{larsPowerCollide} from "./powers.js"
 import{PTIME_COUNT} from "./powers.js"
 import{texPowerCollide} from "./powers.js"
 import{rainettePowerCollide} from "./powers.js"
-
+import{rainaPowerCollide} from "./powers.js"
 
 //sounds
 loadSound("shot","music/shot.mp3");
 loadSound("musicB","music/battle music.mp3");
+loadSound("musicC", "music/sacrafice.wav");
 
 
 export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
@@ -24,10 +25,6 @@ export {attacking};
 export{waveNum};
 
 
-    const music = play("musicB", {
-      loop: true,
-        volume: 0.1,
-    })
 
 
     const fatherSpeed = height() * 7
@@ -62,6 +59,12 @@ export{waveNum};
     var PretzelCount = 5
 
     scene("battle", () => {
+
+
+        const music2 = play("musicB", {
+            loop: true,
+              volume: 0.3,
+          })
 
         //resetting every variable
 
@@ -332,6 +335,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         if(wHealth > 0){
             wHealth = wHealth - 1
         } if (wHealth <= 0){
+            music2.pause(),
             go("lose")
         }
     })
@@ -563,6 +567,19 @@ function death (name){
     larsPowerCollide()
     texPowerCollide()
     rainettePowerCollide()
+     rainaPowerCollide()
+  
+
+
+    const music3 = play("musicC", {
+        volume: 0.3
+    })
+
+    music2.pause();
+    wait(5, () => {
+        music2.play()
+        music3.pause()
+    })
 }
 
 function cancel (){

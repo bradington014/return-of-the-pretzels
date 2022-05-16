@@ -2,8 +2,9 @@
 loadSound("titleMusic","music/pretztitle.mp3");
 loadSound("swords","music/swords.mp3");
 
-scene("title" , () => { 
 
+
+scene("title" , () => { 
 
 
 
@@ -39,6 +40,7 @@ function addButton(txt, p, f) {
 
 	btn.onClick(() => {
 		play("swords")
+		music.pause();
 		
 	})
 

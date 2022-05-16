@@ -1,5 +1,10 @@
-scene("lose",() =>{
+loadSound("musicC", "music/sacrafice.wav");
 
+scene("lose",() =>{
+    const music3 = play("musicC", {
+        loop: true,
+        volume: 0.5,
+    })
 
     const title = add([
         text("You Lost", {
@@ -32,6 +37,11 @@ scene("lose",() =>{
         ])
     
         btn.onClick(f)
+
+        btn.onClick(() => {
+            music3.pause();
+            
+        })
     
         btn.onUpdate(() => {
             if (btn.isHovering()) {

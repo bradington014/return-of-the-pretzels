@@ -2,6 +2,13 @@ import "./battle.js";
 import{pretzelSpeed} from "./battle.js"
 import{pretzelDeaths} from "./battle.js"
 
+//sounds
+loadSound("pain1","music/pain1.mp3");
+loadSound("freeze","music/freeze.mp3");
+loadSound("poisinspell","music/poisinspell.mp3");
+loadSound("splash","music/splash.mp3");
+loadSound("sticky","music/sticky.mp3");
+
 let PTIME_COUNT = 0
 let freeze = "false"
 
@@ -17,6 +24,7 @@ let larsPowers = function larsPowers(){
         lifespan(.1),
         layer("wall"),
         'larspowerup',
+        play("freeze"),
     ])
 }
 
@@ -43,9 +51,10 @@ let shelldonPowers = function shelldonPowers(){
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(5),
+        lifespan(8),
         layer("wall"),
         'shelldonpowerup',
+        play("sticky"),
     ])
   
 }
@@ -68,16 +77,18 @@ let rainettePowers = function rainettePowers(){
 
 let rainaPowers = function rainaPowers(){
     add([
-        rect(width()/1.225,height()),
-        pos(width()/2.475,height()/2),
-        color(149,206,214),
+        rect(width()/1.225,height()/10),
+        pos(width()/2.475,0),
+        color(214, 51, 255),
         area(),
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(.1),
+        body(),
+        lifespan(5),
         layer("wall"),
-        'larspowerup',
+        'rainapowerup',
+        play("splash"),
     ])
 }
 
@@ -92,7 +103,8 @@ let ivyPowers = function ivyPowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'ivyspowerup',
+        play("poisinspell"),
     ])
 }
 
@@ -183,7 +195,13 @@ let rainettePowerCollide = function rainettePowerCollide(){
     })
 }
 
-
+let rainaPowerCollide = function rainaPowerCollide(){
+    onCollide('enemy','rainapowerup', (e)=>{
+        e.speed = e.speed / 1.5,
+        e.hurt(e.hp()/2),
+        play("pain1")
+    })
+}
 
 
 
@@ -204,13 +222,16 @@ function powerTimer (){
         pTimer.text = pTimer.time.toFixed(2)
 
     })
-    
-
 }
+
+
+
+
+
 
 
 
 
 export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, 
     dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide, 
-    texPowerCollide, rainettePowerCollide, PTIME_COUNT};
+    texPowerCollide, rainettePowerCollide, rainaPowerCollide, PTIME_COUNT};
