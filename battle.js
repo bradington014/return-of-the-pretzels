@@ -179,7 +179,7 @@ const pressK = add([
     }
 
 
-    onKeyDown("up", () => {
+    onKeyDown("a", () => {
 
         if (father.pos.y > 0 + 25 && father.pos.y < height()) {
             father.move(0, -KSPEED)
@@ -187,7 +187,7 @@ const pressK = add([
         }
     })
 
-    onKeyDown("down", () => {
+    onKeyDown("d", () => {
 
         if (father.pos.y < height() - 25 && father.pos.y > 0) {
             father.move(0, KSPEED)
