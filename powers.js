@@ -179,7 +179,7 @@ let texPowerCollide = function texPowerCollide(){
 let rainettePowerCollide = function rainettePowerCollide(){
     onCollide('enemy','rainettepowerup', (e)=>{
         e.destroy()
-        pretzelDeaths = pretzelDeaths + 1
+     //   pretzelDeaths = pretzelDeaths + 1
     })
 }
 
