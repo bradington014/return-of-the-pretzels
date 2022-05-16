@@ -12,7 +12,7 @@ import{larsPowerCollide} from "./powers.js"
 import{PTIME_COUNT} from "./powers.js"
 import{texPowerCollide} from "./powers.js"
 import{rainettePowerCollide} from "./powers.js"
-
+import{rainaPowerCollide} from "./powers.js"
 
 //sounds
 loadSound("shot","music/shot.mp3");
@@ -558,6 +558,7 @@ function death (name){
     larsPowerCollide()
     texPowerCollide()
     rainettePowerCollide()
+    rainaPowerCollide()
 }
 
 function cancel (){
