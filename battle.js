@@ -23,8 +23,7 @@ export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
 export {attacking};
 export{waveNum};
 
-
-    const music = play("musicB", {
+    const music2 = play("musicB", {
       loop: true,
         volume: 0.1,
     })
