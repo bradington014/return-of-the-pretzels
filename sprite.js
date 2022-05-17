@@ -12,6 +12,7 @@ loadSprite("Bartholomew", "sprites/Bartholomew.png")
 loadSprite("kid", "sprites/kid.png");
 loadSprite("background", "sprites/sapbackground.png");
 loadSprite("arrow", "sprites/arrow.gif");
+loadSprite("frozenPretzel", "sprites/frozenpretzel.png")
 loadSprite("pretzel", "/sprites/pretzelstrip.png", {
     sliceX: 9,
 
@@ -28,9 +29,25 @@ loadSprite("pretzel", "/sprites/pretzelstrip.png", {
             speed: 10,
         }
     }
-}
+})
 
-)
+loadSprite("firePretzel", "/sprites/firePretzel.png", {
+    sliceX: 9,
+
+    anims: {
+        "idle": {
+            from: 0,
+            to: 0,
+            loop: true,
+        },
+        "run": {
+            from: 1,
+            to: 8,
+            loop: true,
+            speed: 10,
+        }
+    }
+})
 
 
 

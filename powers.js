@@ -1,5 +1,7 @@
 import "./battle.js";
 import{pretzelSpeed} from "./battle.js"
+import{Phealth} from "./battle.js"
+
 
 
 //sounds
@@ -11,6 +13,7 @@ loadSound("sticky","music/sticky.mp3");
 
 let PTIME_COUNT = 0
 let freeze = "false"
+
 
 let larsPowers = function larsPowers(){
     add([
@@ -37,7 +40,7 @@ let texPowers = function texPowers(){
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(15),
+        lifespan(10),
         layer("wall"),
         'texpowerup',
 ])
@@ -79,7 +82,7 @@ let rainaPowers = function rainaPowers(){
     add([
         rect(width()/1.225,height()/10),
         pos(width()/2.475,0),
-        color(214, 51, 255),
+        color(70,205,70),
         area(),
         opacity(.5),
         origin("center"),
@@ -119,7 +122,7 @@ let dwaynePowers = function dwaynePowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'dwaynepowerup',
     ])
 }
 
@@ -134,7 +137,7 @@ let shuihaiziPowers = function shuihaiziPowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'shuihaizipowerup',
     ])
 }
 
@@ -142,28 +145,37 @@ let bartholomewPowers = function bartholomewPowers(){
     add([
         rect(width()/1.225,height()),
         pos(width()/2.475,height()/2),
-        color(149,206,214),
+        color(220,220,220),
         area(),
         opacity(.5),
         origin("center"),
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'bartholomewpowerup',
     ])
 }
 
 let shelldonPowerCollide = function shelldonPowerCollide(){
     onCollide('enemy','shelldonpowerup', (e)=>{
         e.speed = e.speed / 2
+        e.color = rgb(204,204,0)
     })
 }
 
 let larsPowerCollide = function larsPowerCollide(){
     onCollide('enemy','larspowerup', (e)=>{
         e.speed = 0,
+        e.color = rgb(55, 215, 248)
+        e.play("idle")
+       //e.use(sprite("frozenPretzel"))
+     
         wait(9, () => {
             e.speed = pretzelSpeed;
+          //  e.use(sprite("pretzel"))
+         //   e.text = e.hp()
+         e.play("run")
+           e.color = rgb()
         })
         
         
@@ -174,14 +186,43 @@ let larsPowerCollide = function larsPowerCollide(){
 let texPowerCollide = function texPowerCollide(){
     onCollide('enemy','texpowerup', (e)=>{
         e.hurt(1),
-        wait(1, () => {
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb(251,139,35)
+            })
+        wait(.75, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb(251,139,35)
+            })
         })
-        wait(2, () => {
+        wait(1.5, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb(251,139,35)
+            })
         })
+        wait(2.25, () => {
+            e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb(251,139,35)
+            })
+        })
+
         wait(3, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
         })
         
     })
@@ -190,8 +231,7 @@ let texPowerCollide = function texPowerCollide(){
 
 let rainettePowerCollide = function rainettePowerCollide(){
     onCollide('enemy','rainettepowerup', (e)=>{
-        e.destroy()
-     //   pretzelDeaths = pretzelDeaths + 1
+        e.hurt(e.hp())
     })
 }
 
@@ -199,10 +239,17 @@ let rainaPowerCollide = function rainaPowerCollide(){
     onCollide('enemy','rainapowerup', (e)=>{
         e.speed = e.speed / 1.5,
         e.hurt(e.hp()/2),
+        e.color = rgb(50,205,50)
+        e.text = e.hp()
         play("pain1")
     })
 }
 
+let bartholomewPowerCollide = function bartholomewPowerCollide(){
+    onCollide('enemy','bartholomewpowerup', (e)=>{
+        e.hurt(e.hp())
+    })
+}
 
 
 

@@ -1,5 +1,6 @@
 loadSound("musicC", "music/sacrafice.wav");
 
+import{pretzelDeaths} from "./battle.js"
 scene("lose",() =>{
     const music3 = play("musicC", {
         loop: true,
@@ -22,6 +23,20 @@ scene("lose",() =>{
         scale(.5),
         pos(width()/2,height()/6 + 50),
         origin("center")
+    ])
+    
+    const kill = add([
+        text("You killed " + pretzelDeaths + " enemies!",{
+        size:(width()+height())/60
+        }),
+
+        scale(.5),
+        pos(width()/2, height()/20),
+        origin("center"),
+        color(300,0,0),
+
+    
+
     ])
     
     function addButton(txt, p, f) {

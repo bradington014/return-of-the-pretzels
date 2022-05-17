@@ -2,7 +2,9 @@
 loadSound("titleMusic","music/pretztitle.mp3");
 loadSound("swords","music/swords.mp3");
 
+const ppl = ["father","Lars", "Tex", "Shelldon", "Dwayne", "Shuihaizi", "Bartholomew", "Raina", "Ivy", "Rainette"]
 
+var w = 0
 
 scene("title" , () => { 
 
@@ -63,4 +65,59 @@ function addButton(txt, p, f) {
 
 addButton("Play", vec2(width()/2, height()/3), () => go("battle"))
 addButton("Instructions", vec2(width()/2, height()/2), () => go("tutorial"))
+
+const lars = add([
+	sprite("Lars"),
+	scale(.5),
+	origin("center"),
+	pos(width()/4, height()/2),
+
+])
+
+const shuihaizi = add([
+	sprite("Shuihaizi"),
+	scale(.5),
+	origin("center"),
+	pos(width()/1.35, height()/2),
+
+])
+
+const pret = add([
+	sprite("pretzel"),
+	scale(3),
+	origin("center"),
+	pos(0, height()/1.25),
+	area(),
+	"title",
+
+])
+const SPEED = 150
+onDraw(()=> {
+	if(pret.curAnim() !== "run"){
+		pret.play("run")
+	}
+	pret.move(SPEED,0)
+	if (pret.pos.x >= 1350){
+		pret.pos.x = 0
+	}
+})
+
+function father(x) {
+const father = add([
+	sprite(x),
+	scale(.75),
+	origin("center"),
+	pos(width()/1.1, height()/1.25),
+	area(),
+	"father",
+])
+}
+father("Rainette")
+onCollide("title", "father", (t, f) =>{
+	destroy(f)
+	w = w + 1
+	wait(1, () =>{
+		father(ppl[w])
+	})
+})
 })
