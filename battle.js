@@ -22,6 +22,7 @@ loadSound("musicC", "music/sacrafice.wav");
 
 
 export {pretzelSpeed};
+export{winDeaths};
 
 
 
@@ -312,12 +313,14 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
+        if(e.hp() <= 0){
+            destroy(e)
+            winDeaths = winDeaths + 1
+            pretzelDeaths = pretzelDeaths + 1
+            console.log(winDeaths)
+        }
     })
 
-    // onUpdate("show", (s) =>{
-    //     s.move(s.speed,0)
-    // })
-    
 
     
 
@@ -330,22 +333,18 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onCollide("bullet", "enemy", (b, e) => {
-        //console.log(pretzelSpeed)
+ 
         destroy(b)
             e.hurt(1)
             e.color = rgb(300,0,0)
             wait(.1, ()=>{
                 e.color = rgb()
             })
-            //healthBar.text(e.hp())
+
+         
            e.text = e.hp()
 
-            if(e.hp() <= 0){
-                destroy(e)
-               pretzelDeaths = pretzelDeaths + 1
-               winDeaths = winDeaths + 1
-            }
-
+        
     })
    
 
@@ -362,7 +361,6 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onUpdate(()=>{
-        console.log(PretzelCount)
         if (waveNum === 1) {
            // PretzelCountTF = "false"
             wave1()
@@ -479,7 +477,6 @@ function addChild(name, posx, posy, sac, power) {
 
 
 function sac(posX, posY, name, Sacrifice, Cancel){
-    console.log(stay)
     if (stay == "true"){
     const Sacr = add([
         text("Sacrifice " + name,{

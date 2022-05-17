@@ -1,5 +1,6 @@
 import "./battle.js";
 import{pretzelSpeed} from "./battle.js"
+import{winDeaths} from "./battle.js"
 
 
 //sounds
@@ -174,14 +175,43 @@ let larsPowerCollide = function larsPowerCollide(){
 let texPowerCollide = function texPowerCollide(){
     onCollide('enemy','texpowerup', (e)=>{
         e.hurt(1),
-        wait(1, () => {
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+        wait(.75, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
         })
-        wait(2, () => {
+        wait(1.5, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
         })
+        wait(2.25, () => {
+            e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+        })
+
         wait(3, () => {
             e.hurt(1)
+            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
         })
         
     })
@@ -190,8 +220,7 @@ let texPowerCollide = function texPowerCollide(){
 
 let rainettePowerCollide = function rainettePowerCollide(){
     onCollide('enemy','rainettepowerup', (e)=>{
-        e.destroy()
-     //   pretzelDeaths = pretzelDeaths + 1
+        e.hurt(e.hp())
     })
 }
 
