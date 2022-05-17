@@ -288,11 +288,12 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             scale(1.4),
             origin("center"),
             health(Phealth),
+            color(),
           //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
             text(Phealth,{
-                fontcolor: (300,0,0),
+                color: (300,0,0),
             }),
         ])
 
@@ -332,7 +333,12 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         //console.log(pretzelSpeed)
         destroy(b)
             e.hurt(1)
-            e.text = e.hp()
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+            //healthBar.text(e.hp())
+           e.text = e.hp()
 
             if(e.hp() <= 0){
                 destroy(e)
