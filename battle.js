@@ -23,6 +23,9 @@ loadSound("shot","music/shot.mp3");
 loadSound("musicB","music/battle music.mp3");
 loadSound("musicC", "music/sacrafice.wav");
 loadSound("laser", "music/laser.mp3");
+loadSound("arrowhit", "music/arrowhit.mp3");
+loadSound("crunch", "music/crunchy.mp3");
+
 
 
 
@@ -265,30 +268,6 @@ const pressK = add([
 
     })
 
-
-    onKeyPress("left", ()  => {
-        spawnBullet(father.pos.x, father.pos.y)
-
-        spawnBullet(father.pos, father.pos.y - 150)
-        spawnBullet(father.pos.x, father.pos.y - 250)
-        spawnBullet(father.pos.x, father.pos.y - 350)
-        spawnBullet(father.pos.x, father.pos.y - 50)
-        spawnBullet(father.pos, father.pos.y + 150)
-        spawnBullet(father.pos.x, father.pos.y + 250)
-        spawnBullet(father.pos.x, father.pos.y + 350)
-        spawnBullet(father.pos.x, father.pos.y + 50)
-        spawnBullet(father.pos, father.pos.y - 100)
-        spawnBullet(father.pos.x, father.pos.y - 200)
-        spawnBullet(father.pos.x, father.pos.y - 300)
-        spawnBullet(father.pos.x, father.pos.y - 400)
-        spawnBullet(father.pos, father.pos.y + 100)
-        spawnBullet(father.pos.x, father.pos.y + 200)
-        spawnBullet(father.pos.x, father.pos.y + 300)
-        spawnBullet(father.pos.x, father.pos.y + 400)
-        spawnBullet(father.pos.x, father.pos.y + 75)
-        spawnBullet(father.pos.x, father.pos.y - 75)
-    })
-
     const father = add([
         sprite("father"),
         scale(KSCALE),
@@ -421,6 +400,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         e.move(e.speed,0)
         if(e.hp() <= 0){
             destroy(e)
+            play("crunch")
             pretzelDeaths = pretzelDeaths + 1
         }
     })
@@ -495,7 +475,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onCollide("bullet", "enemy", (b, e) => {
- 
+        play("arrowhit")
         destroy(b)
             e.hurt(1)
             e.color = rgb(300,0,0)
