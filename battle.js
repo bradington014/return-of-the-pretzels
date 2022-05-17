@@ -291,18 +291,21 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
           //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
+            text(Phealth,{
+                fontcolor: (300,0,0),
+            }),
         ])
 
-        const healthBar = add([
-            text(enemy.hp()),
-            pos(enemy.pos.x, enemy.pos.y - NPOS),
-            color(300,0,0),
-            layer("top"),
-            origin("center"),
-            scale(1.5),
-            { speed: enemy.speed},
-            "show",
-        ])
+        // const healthBar = add([
+        //     text(enemy.hp()),
+        //     pos(enemy.pos.x, enemy.pos.y - NPOS),
+        //     color(300,0,0),
+        //     layer("top"),
+        //     origin("center"),
+        //     scale(1.5),
+        //     { speed: enemy.speed},
+        //     "show",
+        // ])
         enemy.play("run")
     }
 
@@ -310,9 +313,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         e.move(e.speed,0)
     })
 
-    onUpdate("show", (s) =>{
-        s.move(s.speed,0)
-    })
+    // onUpdate("show", (s) =>{
+    //     s.move(s.speed,0)
+    // })
     
 
     
@@ -326,14 +329,15 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onCollide("bullet", "enemy", (b, e) => {
-        console.log(pretzelSpeed)
+        //console.log(pretzelSpeed)
         destroy(b)
             e.hurt(1)
+            e.text = e.hp()
+
             if(e.hp() <= 0){
                 destroy(e)
                pretzelDeaths = pretzelDeaths + 1
                winDeaths = winDeaths + 1
-               console.log(pretzelDeaths)
             }
 
     })
@@ -343,6 +347,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         destroy(e)
         if(wHealth > 0){
             wHealth = wHealth - 1
+            winDeaths = winDeaths + 1
         } if (wHealth <= 0){
             music2.pause(),
             go("lose")
