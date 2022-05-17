@@ -58,6 +58,7 @@ export{winDeaths};
     let pretzelDeaths = 0
     var PretzelCount = 5
     let winDeaths = 0
+    var bossFight = "false"
 
     //debug.inspect = true
 
@@ -72,7 +73,7 @@ export{winDeaths};
         //resetting every variable
         pretzelSpeed = 100
         Phealth = 3
-        waveNum = 0
+        waveNum = 9
         TIME_COUNT = 0
         AKSCALE = KSCALE
         wHealth = 10
@@ -88,6 +89,7 @@ export{winDeaths};
         pretzelDeaths = 0
         PretzelCount = 5
         winDeaths = 0
+        bossFight = "false"
 
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
@@ -319,6 +321,15 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             pretzelDeaths = pretzelDeaths + 1
             console.log(winDeaths)
         }
+
+        if(bossFight == "true"){
+            spawnPretzel()
+           // bossFight == "false"
+            e.scale = 5,
+            e.color = rgb(100, 0 ,0),
+            e.pos.y = height()/2
+
+        }
     })
 
 
@@ -329,7 +340,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
                 spawnPretzel()
                  PretzelCount = PretzelCount - 1
             } 
+
     })
+
 
 
     onCollide("bullet", "enemy", (b, e) => {
@@ -893,7 +906,13 @@ function wave10(){
     Phealth = 10
 
     if(winDeaths === 15){
-        PretzelCountTF = "false"
+        pretzelSpeed = 25
+        Phealth = 100
+        bossFight = "true"
+        winDeaths = 16
+    }
+    if(winDeaths === 17){
+         PretzelCountTF = "false"
         go('win')
     }
 }
