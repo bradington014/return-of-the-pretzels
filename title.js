@@ -2,7 +2,9 @@
 loadSound("titleMusic","music/pretztitle.mp3");
 loadSound("swords","music/swords.mp3");
 
+const ppl = ["father","Lars", "Tex", "Shelldon", "Dwayne", "Shuihaizi", "Bartholomew", "Raina", "Ivy", "Rainette"]
 
+var w = 0
 
 scene("title" , () => { 
 
@@ -100,9 +102,9 @@ onDraw(()=> {
 	}
 })
 
-function father() {
+function father(x) {
 const father = add([
-	sprite("father"),
+	sprite(x),
 	scale(.5),
 	origin("center"),
 	pos(width()/1.1, height()/1.25),
@@ -110,11 +112,12 @@ const father = add([
 	"father",
 ])
 }
-father()
+father("father")
 onCollide("title", "father", (t, f) =>{
 	destroy(f)
+	w = w + 1
 	wait(1, () =>{
-		father()
+		father(ppl[w])
 	})
 })
 })
