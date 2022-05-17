@@ -323,11 +323,11 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         }
 
         if(bossFight == "true"){
-            spawnPretzel()
-           // bossFight == "false"
             e.scale = 5,
             e.color = rgb(100, 0 ,0),
             e.pos.y = height()/2
+            
+           // e.speed = 10
 
         }
     })
@@ -336,7 +336,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     
 
     onUpdate("timer", (t) =>{
-            if(PretzelCountTF == "true" && timer.text % 1 === 0 && PretzelCount > 0){
+            if(PretzelCountTF == "true" && timer.text % 1 && PretzelCount > 0){
                 spawnPretzel()
                  PretzelCount = PretzelCount - 1
             } 
@@ -369,6 +369,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         } if (wHealth <= 0){
             music2.pause(),
             go("lose")
+        }
+        if(bossFight == "true"){
+            wHealth = wHealth - 4
         }
     })
 
@@ -906,10 +909,12 @@ function wave10(){
     Phealth = 10
 
     if(winDeaths === 15){
-        pretzelSpeed = 25
+        PretzelCount = 1
+        pretzelSpeed = 100
         Phealth = 100
         bossFight = "true"
-        winDeaths = 16
+        winDeaths = winDeaths + 1
+      //  PretzelCount = "false"
     }
     if(winDeaths === 17){
          PretzelCountTF = "false"
