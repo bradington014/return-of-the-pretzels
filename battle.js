@@ -13,6 +13,10 @@ import{PTIME_COUNT} from "./powers.js"
 import{texPowerCollide} from "./powers.js"
 import{rainettePowerCollide} from "./powers.js"
 import{rainaPowerCollide} from "./powers.js"
+import{bartholomewPowerCollide} from "./powers.js"
+import{ivyPowerCollide} from "./powers.js"
+import{dwaynePowerCollide} from "./powers.js"
+import{shuihaiziPowerCollide} from "./powers.js"
 
 //sounds
 loadSound("shot","music/shot.mp3");
@@ -647,13 +651,43 @@ function death (name){
         shuihaiziPowers()
     } else if(name == "Bartholomew"){
         bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
+        bartholomewPowers()
     }
 
     shelldonPowerCollide()
     larsPowerCollide()
     texPowerCollide()
     rainettePowerCollide()
-     rainaPowerCollide()
+    rainaPowerCollide()
+    bartholomewPowerCollide()
+    ivyPowerCollide()
+    dwaynePowerCollide()
+    shuihaiziPowerCollide()
   
 }
 
