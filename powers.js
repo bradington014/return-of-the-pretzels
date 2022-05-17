@@ -142,17 +142,22 @@ let shuihaiziPowers = function shuihaiziPowers(){
 }
 
 let bartholomewPowers = function bartholomewPowers(){
-    add([
-        rect(width()/1.225,height()),
-        pos(width()/2.475,height()/2),
+    const bart = add([
+        rect(width()/16,height()/20),
+       // pos(rand(0, width()/1.2), rand(0, height())),
+       pos(width()/2.475, height()/2),
         color(220,220,220),
-        area(),
+        area({
+            width: 20,
+            height: 20,
+        }),
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(.1),
+        lifespan(5),
         layer("wall"),
         'bartholomewpowerup',
+        move(rand(0,width()), rand(0, height()))
     ])
 }
 
@@ -246,8 +251,9 @@ let rainaPowerCollide = function rainaPowerCollide(){
 }
 
 let bartholomewPowerCollide = function bartholomewPowerCollide(){
-    onCollide('enemy','bartholomewpowerup', (e)=>{
+    onCollide('enemy','bartholomewpowerup', (e, b)=>{
         e.hurt(e.hp())
+        //destroy(b)
     })
 }
 
@@ -263,4 +269,4 @@ let bartholomewPowerCollide = function bartholomewPowerCollide(){
 
 export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, 
     dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide, 
-    texPowerCollide, rainettePowerCollide, rainaPowerCollide, PTIME_COUNT};
+    texPowerCollide, rainettePowerCollide, rainaPowerCollide, bartholomewPowerCollide, PTIME_COUNT};
