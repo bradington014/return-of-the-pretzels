@@ -74,7 +74,7 @@ export {pretzelSpeed};
         //resetting every variable
         pretzelSpeed = 100
         Phealth = 3
-        waveNum = 9
+        waveNum = 0
         TIME_COUNT = 0
         AKSCALE = KSCALE
         wHealth = 10
@@ -344,6 +344,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             destroy(b)
             pretzelDeaths = pretzelDeaths + 1
             go("win")
+            music2.pause()
         }
         if(b.hp() <= 75){
             b.speed = 25
@@ -958,7 +959,10 @@ function wave10(){
 }
 
 scene("win",() =>{
-
+    const music4 = play("musicD",{
+        loop:true,
+        volume: 0.5,
+    })
 
     const title = add([
         text("You Won!", {
@@ -991,6 +995,9 @@ scene("win",() =>{
         ])
     
         btn.onClick(f)
+        btn.onClick(()=>{
+            music4.pause()
+        })
     
         btn.onUpdate(() => {
             if (btn.isHovering()) {
