@@ -22,14 +22,13 @@ import{shuihaiziPowerCollide} from "./powers.js"
 loadSound("shot","music/shot.mp3");
 loadSound("musicB","music/battle music.mp3");
 loadSound("musicC", "music/sacrafice.wav");
+loadSound("laser", "music/laser.mp3");
 
 
 
 export {pretzelSpeed};
 export {pretzelDeaths}
 export{Phealth}
-
-
 
 
 
@@ -67,6 +66,7 @@ export{Phealth}
     var lose = "false"
     var bossCount = 1
     var Bhealth = 100
+    var powerup = 1
     //debug.inspect = true
 
     scene("battle", () => {
@@ -99,6 +99,7 @@ export{Phealth}
         lose = "false"
         bossCount = 1
         Bhealth = 100
+        powerup = 1
 
         
 
@@ -224,6 +225,20 @@ const pressK = add([
             layer("top"),
             cleanup(),
             "bullet",
+        ])
+    }
+
+    function spawnLazer(p, s) {
+        add([
+            sprite("lazer"),
+            //rect(24, 6),
+            area(),
+            pos(p, s),
+            origin("center"),
+            move(0, -BSpeed),
+            layer("top"),
+            cleanup(),
+            "lazer",
         ])
     }
 
@@ -383,6 +398,25 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         enemy.play("run")
     }
 
+    function spawnPowerup(){
+        const powerUp = add([
+            sprite("powerUp"),
+            area({
+                width: 40,
+                height: 35,
+            }),
+            pos(0, height()/2),
+            layer("top"),
+            scale(2),
+            health(Phealth),
+            "powerup",
+            { speed: 150 },
+            text(Phealth,{
+                size: 15,
+            }),
+        ])
+    }
+
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
         if(e.hp() <= 0){
@@ -390,6 +424,32 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             pretzelDeaths = pretzelDeaths + 1
         }
     })
+
+    onUpdate("powerup", (pup) =>{
+        pup.move(pup.speed,0)
+        if(pup.hp() <= 0){
+            destroy(pup)
+           const lasertext = add([
+                pos(width()/8,height()/20),
+                text("You have unlocked a special attack! (press Q to fire lazers arrows)"),
+                color(255,255,255),
+                scale(2),
+                layer("bio"),
+                
+            ])
+            wait(3, ()=> {
+                
+                destroy(lasertext)
+            })
+            onKeyPress("q", ()  => {
+                spawnLazer(father.pos.x, father.pos.y)
+                play("laser");
+        
+            })
+        }
+    })
+
+   
 
     onUpdate("boss", (b) =>{
         b.move(b.speed,0)
@@ -425,6 +485,10 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
                 spawnBoss()
                 bossCount = bossCount - 1
             }
+            if(waveNum === 9 && powerup > 0){
+                spawnPowerup()
+                powerup = powerup - 1;
+            }
 
     })
 
@@ -434,6 +498,45 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
  
         destroy(b)
             e.hurt(1)
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+
+         
+           e.text = e.hp()     
+    })
+
+    onCollide("bullet", "powerup", (b, p) => {
+ 
+        destroy(b)
+            p.hurt(1)
+            p.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                p.color = rgb()
+            })
+
+         
+           p.text = p.hp()     
+    })
+    
+
+    onCollide("lazer", "boss", (la, e) => {
+ 
+        destroy(la)
+            e.hurt(5)
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+
+           e.text = e.hp()     
+    })
+
+    onCollide("lazer", "enemy", (la, e) => {
+ 
+        destroy(la)
+            e.hurt(5)
             e.color = rgb(300,0,0)
             wait(.1, ()=>{
                 e.color = rgb()
@@ -739,6 +842,7 @@ function cancel (){
 
 
 function wave1() {
+    
     if(PretzelCount === 0){
         PretzelCountTF = "false"
         
@@ -757,12 +861,14 @@ function wave1() {
         })
     }
     onKeyPress("l", () => {
+        
         if (PretzelCountTF == "false" && waveNum === 1) {
             PretzelCountTF = "true"
             timer.time = 0
             PretzelCount = 5
             waveNum = waveNum + 1
         }
+        
     })
 }
 
@@ -790,6 +896,7 @@ function wave2(){
         })
     }
     onKeyPress("l", () => {
+        
         if (PretzelCountTF == "false" && waveNum === 2) {
             PretzelCountTF = "true"
             timer.time = 0
@@ -1028,6 +1135,7 @@ function wave9(){
             timer.time = 0
             PretzelCount = 15
             waveNum = waveNum + 1
+            
             
         }
 
