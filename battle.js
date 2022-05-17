@@ -58,6 +58,8 @@ export {pretzelSpeed};
     var PretzelCount = 5
     let winDeaths = 0
 
+    //debug.inspect = true
+
     scene("battle", () => {
 
 
@@ -290,11 +292,26 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
         ])
+
+        const healthBar = add([
+            text(enemy.hp()),
+            pos(enemy.pos.x, enemy.pos.y - NPOS),
+            color(300,0,0),
+            layer("top"),
+            origin("center"),
+            scale(1.5),
+            { speed: enemy.speed},
+            "show",
+        ])
         enemy.play("run")
     }
 
     onUpdate("enemy", (e) =>{
         e.move(e.speed,0)
+    })
+
+    onUpdate("show", (s) =>{
+        s.move(s.speed,0)
     })
     
 
