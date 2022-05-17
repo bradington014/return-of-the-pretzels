@@ -13,6 +13,8 @@ loadSprite("kid", "sprites/kid.png");
 loadSprite("background", "sprites/sapbackground.png");
 loadSprite("arrow", "sprites/arrow.gif");
 loadSprite("frozenPretzel", "sprites/frozenpretzel.png")
+loadSprite("powerUp", "sprites/Powerup.gif");
+loadSprite("lazer", "sprites/lazer.gif");
 loadSprite("pretzel", "/sprites/pretzelstrip.png", {
     sliceX: 9,
 
