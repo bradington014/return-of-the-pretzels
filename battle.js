@@ -489,6 +489,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
                 spawnPowerup()
                 powerup = powerup - 1;
             }
+            if (timer.text % 10 === 0){
+                timer.time = 0
+            }
 
     })
 
