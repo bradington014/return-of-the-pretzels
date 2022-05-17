@@ -70,7 +70,6 @@ let rainettePowers = function rainettePowers(){
         area(),
         opacity(.5),
         origin("center"),
-        area(),
         body(),
         lifespan(10),
         layer("wall"),
@@ -86,7 +85,6 @@ let rainaPowers = function rainaPowers(){
         area(),
         opacity(.5),
         origin("center"),
-        area(),
         body(),
         lifespan(5),
         layer("wall"),
@@ -103,7 +101,6 @@ let ivyPowers = function ivyPowers(){
         area(),
         opacity(.5),
         origin("center"),
-        area(),
         lifespan(.1),
         layer("wall"),
         'ivypowerup',
@@ -113,31 +110,31 @@ let ivyPowers = function ivyPowers(){
 
 let dwaynePowers = function dwaynePowers(){
     add([
-        rect(width()/1.225,height()),
-        pos(width()/2.475,height()/2),
-        color(149,206,214),
+        rect(width()/16,height()),
+        pos(width()/1.2,height()/2),
+        color(181, 101, 30),
         area(),
         opacity(.5),
         origin("center"),
-        area(),
-        lifespan(.1),
+        lifespan(8),
         layer("wall"),
         'dwaynepowerup',
+        move(0, -width()/4)
     ])
 }
 
 let shuihaiziPowers = function shuihaiziPowers(){
     add([
-        rect(width()/1.225,height()),
-        pos(width()/2.475,height()/2),
-        color(149,206,214),
+        rect(width()/16,height()),
+        pos(width()/1.2,height()/2),
+        color(0, 105, 148),
         area(),
         opacity(.5),
         origin("center"),
-        area(),
-        lifespan(.1),
+        lifespan(8),
         layer("wall"),
         'shuihaizipowerup',
+        move(0, -width()/4)
     ])
 }
 
@@ -153,7 +150,6 @@ let bartholomewPowers = function bartholomewPowers(){
         }),
         opacity(.5),
         origin("center"),
-        area(),
         lifespan(5),
         layer("wall"),
         'bartholomewpowerup',
@@ -300,6 +296,33 @@ let ivyPowerCollide = function ivyPowerCollide(){
     })
 }
 
+let dwaynePowerCollide = function dwaynePowerCollide(){
+    onCollide('enemy','dwaynepowerup', (e)=>{
+        e.hurt(e.hp()/10)
+        e.speed = e.speed - e.speed/10
+        e.color = rgb(300,0,0)
+        wait(.1, () =>{
+            e.color = rgb()
+        })
+        e.text = e.hp().toFixed(2)
+        e.pos.x = e.pos.x - e.pos.x/2
+        //destroy(b)
+    })
+}
+
+let shuihaiziPowerCollide = function shuihaiziPowerCollide(){
+    onCollide('enemy','shuihaizipowerup', (e)=>{
+        e.hurt(e.hp()/6)
+        e.color = rgb(300,0,0)
+        wait(.1, () =>{
+            e.color = rgb()
+        })
+        e.text = e.hp().toFixed(2)
+        e.pos.x = e.pos.x - e.pos.x/2
+        //destroy(b)
+    })
+}
+
 
 
 
@@ -312,4 +335,4 @@ let ivyPowerCollide = function ivyPowerCollide(){
 
 export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, 
     dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide, 
-    texPowerCollide, rainettePowerCollide, rainaPowerCollide, bartholomewPowerCollide, ivyPowerCollide, PTIME_COUNT};
+    texPowerCollide, rainettePowerCollide, rainaPowerCollide, bartholomewPowerCollide, ivyPowerCollide, dwaynePowerCollide, shuihaiziPowerCollide, PTIME_COUNT};
