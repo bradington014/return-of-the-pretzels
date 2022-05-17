@@ -63,4 +63,58 @@ function addButton(txt, p, f) {
 
 addButton("Play", vec2(width()/2, height()/3), () => go("battle"))
 addButton("Instructions", vec2(width()/2, height()/2), () => go("tutorial"))
+
+const lars = add([
+	sprite("Lars"),
+	scale(.5),
+	origin("center"),
+	pos(width()/4, height()/2),
+
+])
+
+const shuihaizi = add([
+	sprite("Shuihaizi"),
+	scale(.5),
+	origin("center"),
+	pos(width()/1.35, height()/2),
+
+])
+
+const pret = add([
+	sprite("pretzel"),
+	scale(3),
+	origin("center"),
+	pos(0, height()/1.25),
+	area(),
+	"title",
+
+])
+const SPEED = 150
+onDraw(()=> {
+	if(pret.curAnim() !== "run"){
+		pret.play("run")
+	}
+	pret.move(SPEED,0)
+	if (pret.pos.x >= 1350){
+		pret.pos.x = 0
+	}
+})
+
+function father() {
+const father = add([
+	sprite("father"),
+	scale(.5),
+	origin("center"),
+	pos(width()/1.1, height()/1.25),
+	area(),
+	"father",
+])
+}
+father()
+onCollide("title", "father", (t, f) =>{
+	destroy(f)
+	wait(1, () =>{
+		father()
+	})
+})
 })
