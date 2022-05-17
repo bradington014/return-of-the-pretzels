@@ -22,7 +22,7 @@ loadSound("musicC", "music/sacrafice.wav");
 
 
 export {pretzelSpeed};
-export{winDeaths};
+
 
 
 
@@ -57,10 +57,10 @@ export{winDeaths};
     let attacking = "false"
     let pretzelDeaths = 0
     var PretzelCount = 5
-    let winDeaths = 0
     var bossFight = "false"
     var lose = "false"
-
+    var bossCount = 1
+    var Bhealth = 100
     //debug.inspect = true
 
     scene("battle", () => {
@@ -89,9 +89,10 @@ export{winDeaths};
         attacking = "false"
         pretzelDeaths = 0
         PretzelCount = 5
-        winDeaths = 0
         bossFight = "false"
         lose = "false"
+        bossCount = 1
+        Bhealth = 100
 
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
@@ -302,16 +303,30 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             }),
         ])
 
-        // const healthBar = add([
-        //     text(enemy.hp()),
-        //     pos(enemy.pos.x, enemy.pos.y - NPOS),
-        //     color(300,0,0),
-        //     layer("top"),
-        //     origin("center"),
-        //     scale(1.5),
-        //     { speed: enemy.speed},
-        //     "show",
-        // ])
+        enemy.play("run")
+    }
+
+    function spawnBoss() {
+       
+        const enemy = add([
+            sprite("pretzel"),
+            area({
+                width: 40,
+                height: 35,
+            }),
+            pos(0, height()/2),
+            layer("top"),
+            scale(5),
+            origin("center"),
+            health(Bhealth),
+            color(0,0,0),
+            "boss",
+            { speed: 10 },
+            text(Bhealth,{
+                size: 15,
+            }),
+        ])
+
         enemy.play("run")
     }
 
@@ -319,18 +334,28 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         e.move(e.speed,0)
         if(e.hp() <= 0){
             destroy(e)
-            winDeaths = winDeaths + 1
             pretzelDeaths = pretzelDeaths + 1
-            console.log(winDeaths)
         }
+    })
 
-        if(bossFight == "true"){
-            e.scale = 5,
-            e.color = rgb(100, 0 ,0),
-            e.pos.y = height()/2
-            
-           // e.speed = 10
-
+    onUpdate("boss", (b) =>{
+        b.move(b.speed,0)
+        if(b.hp() <= 0){
+            destroy(b)
+            pretzelDeaths = pretzelDeaths + 1
+            go("win")
+        }
+        if(b.hp() <= 75){
+            b.speed = 25
+            b.color = rgb(50,0,100)
+        }
+        if(b.hp() <= 50){
+            b.speed = 50
+            b.color = rgb(100,0,200)
+        }
+        if(b.hp() <= 25){
+            b.speed = 75
+            b.color = rgb(200,0,300)
         }
     })
 
@@ -338,10 +363,14 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     
 
     onUpdate("timer", (t) =>{
-            if(PretzelCountTF == "true" && timer.text % 1 && PretzelCount > 0){
+            if(PretzelCountTF == "true" && timer.text % 1 === 0 && PretzelCount > 0){
                 spawnPretzel()
                  PretzelCount = PretzelCount - 1
             } 
+            if(bossCount > 0 && waveNum === 10 && PretzelCount <= 1){
+                spawnBoss()
+                bossCount = bossCount - 1
+            }
 
     })
 
@@ -357,9 +386,19 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             })
 
          
-           e.text = e.hp()
+           e.text = e.hp()     
+    })
 
-        
+    onCollide("bullet", "boss", (b, e) => {
+ 
+        destroy(b)
+            e.hurt(1)
+            e.color = rgb(300,0,0)
+            wait(.1, ()=>{
+                e.color = rgb()
+            })
+
+           e.text = e.hp()     
     })
    
 
@@ -367,16 +406,16 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         destroy(e)
         if(wHealth > 0){
             wHealth = wHealth - 1
-            winDeaths = winDeaths + 1
         } if (wHealth <= 0){
             music2.pause(),
             go("lose")
         }
-        if(bossFight == "true"){
-            lose = "true"
-            music2.pause()
-            go("lose")
-        }
+    })
+
+    onCollide("boss", "wall", (e) =>{
+        destroy(e)
+        music2.pause()
+        go("lose")
     })
 
 
@@ -636,7 +675,6 @@ function wave1() {
         if (PretzelCountTF == "false" && waveNum === 1) {
             PretzelCountTF = "true"
             timer.time = 0
-            //pretzelDeaths = 0
             PretzelCount = 5
             waveNum = waveNum + 1
         }
@@ -703,7 +741,6 @@ function wave3(){
         if (PretzelCountTF == "false" && waveNum === 3) {
             PretzelCountTF = "true"
             timer.time = 0
-            pretzelDeaths = 0
             PretzelCount = 8
             waveNum = waveNum + 1
         }
@@ -880,6 +917,7 @@ function wave9(){
     Phealth = 9
 
     if(PretzelCount === 0){
+        
         PretzelCountTF = "false"
         
         const pressL = add([
@@ -889,12 +927,15 @@ function wave9(){
             origin("center"),
             scale(3.7),
         ])
+
     
         pressL.onUpdate(()=>{
             if(PretzelCountTF == "true"){
             pressL.destroy()
             }
+
         })
+        
     }
     onKeyPress("l", () => {
         if (PretzelCountTF == "false" && waveNum === 9) {
@@ -902,28 +943,18 @@ function wave9(){
             timer.time = 0
             PretzelCount = 15
             waveNum = waveNum + 1
-            winDeaths = 0
+            
         }
+
     })
 }
 
 function wave10(){
 
+
     pretzelSpeed = 250
     Phealth = 10
 
-    if(winDeaths === 15){
-        PretzelCount = 1
-        pretzelSpeed = 100
-        Phealth = 100
-        bossFight = "true"
-        winDeaths = winDeaths + 1
-      //  PretzelCount = "false"
-    }
-    if(winDeaths === 17 && lose == "false"){
-         PretzelCountTF = "false"
-        go('win')
-    }
 }
 
 scene("win",() =>{
