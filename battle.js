@@ -100,10 +100,47 @@ export{Phealth}
         bossCount = 1
         Bhealth = 100
 
+        
+
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
     add([sprite("background", { width: width(), height: height() })
     ]);
+
+    function addButton(txt, p, f) {
+    
+        const btn = add([
+            text(txt,{
+                size: (width()+height())/100
+            }),
+            scale(1),
+            pos(p),
+            color(300,0,0),
+            area({ cursor: "pointer", }),
+            origin("center"),
+        ])
+    
+        btn.onClick(f)
+
+        btn.onClick(() => {
+            music2.pause();
+            
+        })
+    
+        btn.onUpdate(() => {
+            if (btn.isHovering()) {
+                btn.color = rgb(0,300,0)
+                btn.scale = vec2(1.2)
+            } else {
+                btn.scale = vec2(1)
+                btn.color = rgb(300, 0 ,0)
+            }
+        })
+    
+    }
+    
+    addButton("Restart", vec2(width()/1.1, height()/40), () => go("battle"))
+    addButton("Home", vec2(width()/1.1, height()/ 20), () => go("title"))
 
     const lag = add([
         rect(1, height()),
@@ -206,11 +243,13 @@ const pressK = add([
         }
     })
 
+   
     onKeyPress("space", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
         play("shot");
 
     })
+
 
     onKeyPress("left", ()  => {
         spawnBullet(father.pos.x, father.pos.y)
@@ -469,6 +508,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
     onUpdate("af", (t)=>{
         destroy(t)
     })
+
+
+
 
 })
 
