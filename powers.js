@@ -1,6 +1,6 @@
 import "./battle.js";
 import{pretzelSpeed} from "./battle.js"
-import{pretzelDeaths} from "./battle.js"
+
 
 //sounds
 loadSound("pain1","music/pain1.mp3");

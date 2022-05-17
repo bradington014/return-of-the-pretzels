@@ -21,9 +21,8 @@ loadSound("musicC", "music/sacrafice.wav");
 
 
 
-export {PretzelCount, pretzelSpeed, pretzelDeaths, PretzelCountTF};
-export {attacking};
-export{waveNum};
+export {pretzelSpeed};
+
 
 
 
@@ -48,7 +47,6 @@ export{waveNum};
     var wHealth = 10
     var FMove = 5
     var BDMG = 1
-    var BRELOAD = 3
     var KSPEED = 100
     var TexScript = "false"
     var point = 9
@@ -68,26 +66,14 @@ export{waveNum};
           })
 
         //resetting every variable
-
-        const fatherSpeed = height() * 7
         pretzelSpeed = 100
         Phealth = 3
-        const BSpeed = 700
-        const KPOS = height() / 9
-        const NPOS = height()/23
-        const WPOS = height()/13.2
-        const KSCALE = (height() + width ()) / 6875
-        const BKSCALE = (height() + width ()) / 5500
-        const NtextScale = 1
-        const BtextScale = 1.25
-        const wS = .5
         waveNum = 0
         TIME_COUNT = 0
         AKSCALE = KSCALE
         wHealth = 10
         FMove = 5
         BDMG = 1
-        BRELOAD = 3
         KSPEED = 100
         TexScript = "false"
         point = 9
@@ -321,6 +307,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
 
     onCollide("bullet", "enemy", (b, e) => {
+        console.log(pretzelSpeed)
         destroy(b)
             e.hurt(1)
             if(e.hp() <= 0){
