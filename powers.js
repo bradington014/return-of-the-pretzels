@@ -38,7 +38,7 @@ let texPowers = function texPowers(){
         opacity(.5),
         origin("center"),
         area(),
-        lifespan(15),
+        lifespan(10),
         layer("wall"),
         'texpowerup',
 ])
@@ -120,7 +120,7 @@ let dwaynePowers = function dwaynePowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'dwaynepowerup',
     ])
 }
 
@@ -135,7 +135,7 @@ let shuihaiziPowers = function shuihaiziPowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'shuihaizipowerup',
     ])
 }
 
@@ -150,7 +150,7 @@ let bartholomewPowers = function bartholomewPowers(){
         area(),
         lifespan(.1),
         layer("wall"),
-        'larspowerup',
+        'bartholomewpowerup',
     ])
 }
 

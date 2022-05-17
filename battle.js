@@ -126,7 +126,6 @@ export {pretzelDeaths}
 // starts the pretzels coming at you
 onKeyPress("k", ()  => {
     if(PretzelCountTF == "false" && waveNum === 0){
-    //wave1()
     timer.time = 0
     PretzelCountTF = "true"
     waveNum = 1
@@ -135,7 +134,6 @@ onKeyPress("k", ()  => {
     }
     
 }
-    //father.pos.x, father.pos.y
 )
 
 const pressK = add([
@@ -180,8 +178,6 @@ const pressK = add([
             area(),
             pos(p, s),
             origin("center"),
-            //color(127, 127, 255),
-            //outline(4),
             move(0, -BSpeed),
             layer("top"),
             cleanup(),
@@ -493,7 +489,6 @@ function addChild(name, posx, posy, sac, power) {
                 text(name),
                 origin("center"),
                 layer("bio"),
-               // holder,
 
             ])
 
@@ -504,7 +499,6 @@ function addChild(name, posx, posy, sac, power) {
                 layer("bio"),
                 scale(2),
                 color(200,100,150),
-               // holder,
 
             ])
 
@@ -514,7 +508,6 @@ function addChild(name, posx, posy, sac, power) {
                 origin("center"),
                 color(0,0,0),
                 layer("obj"),
-               // holder,
             ])
            const bio =  add([
                  pos(width()/1.225, height()/2),
@@ -525,7 +518,6 @@ function addChild(name, posx, posy, sac, power) {
                 color(300,300,0),
                 origin("center"),
                 layer("bio"),
-               // holder,
             ])
 
           
@@ -602,7 +594,6 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         Sacr.destroy()
         back.destroy()
         stay = "true"
-       // holder = "tr"
     })
 
     cancel.onUpdate(() =>{ 
