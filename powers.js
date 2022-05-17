@@ -10,6 +10,11 @@ loadSound("freeze","music/freeze.mp3");
 loadSound("poisinspell","music/poisinspell.mp3");
 loadSound("splash","music/splash.mp3");
 loadSound("sticky","music/sticky.mp3");
+loadSound("fire","music/firesound.mp3");
+loadSound("thunder","music/Thunder.mp3");
+loadSound("water", "music/water.mp3");
+loadSound("eq", "music/eq.mp3");
+loadSound("hat", "music/eq.mp3");
 
 let PTIME_COUNT = 0
 let freeze = "false"
@@ -42,6 +47,7 @@ let texPowers = function texPowers(){
         area(),
         lifespan(10),
         layer("wall"),
+        play("fire"),
         'texpowerup',
 ])
 }
@@ -74,6 +80,7 @@ let rainettePowers = function rainettePowers(){
         lifespan(10),
         layer("wall"),
         'rainettepowerup',
+        play("thunder"),
     ])
 }
 
@@ -119,6 +126,7 @@ let dwaynePowers = function dwaynePowers(){
         lifespan(8),
         layer("wall"),
         'dwaynepowerup',
+        play("eq"),
         move(0, -width()/4)
     ])
 }
@@ -134,6 +142,7 @@ let shuihaiziPowers = function shuihaiziPowers(){
         lifespan(8),
         layer("wall"),
         'shuihaizipowerup',
+        play("water"),
         move(0, -width()/4)
     ])
 }
@@ -152,6 +161,7 @@ let bartholomewPowers = function bartholomewPowers(){
         origin("center"),
         lifespan(5),
         layer("wall"),
+        play("hat"),
         'bartholomewpowerup',
         move(rand(0,width()), rand(0, height()))
     ])
@@ -189,6 +199,9 @@ let texPowerCollide = function texPowerCollide(){
         e.hurt(1),
         e.text = e.hp()
         e.color = rgb(300,0,0)
+
+        
+
             wait(.1, ()=>{
                 e.color = rgb(251,139,35)
             })
@@ -232,6 +245,7 @@ let texPowerCollide = function texPowerCollide(){
 
 let rainettePowerCollide = function rainettePowerCollide(){
     onCollide('enemy','rainettepowerup', (e)=>{
+        
         e.hurt(e.hp())
     })
 }
