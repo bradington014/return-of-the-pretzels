@@ -302,7 +302,6 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             origin("center"),
             health(Phealth),
             color(),
-          //  setHP(5),
             "enemy",
             { speed: rand(pretzelSpeed * 0.5, pretzelSpeed * 1.5) },
             text(Phealth,{
@@ -429,13 +428,11 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
 
     onCollide("bullet", "lag", (b) => {
         destroy(b)
-        console.log("work")
     })
 
 
     onUpdate(()=>{
         if (waveNum === 1) {
-           // PretzelCountTF = "false"
             wave1()
          }else if (waveNum === 2) {
             wave2()
@@ -566,7 +563,6 @@ function sac(posX, posY, name, Sacrifice, Cancel){
         back.destroy()
         destroyAll(name)
         stay = "true"
-           // holder = "tr"
     })
         Sacr.onUpdate(() =>{ 
         if(Sacr.isHovering()){

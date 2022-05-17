@@ -105,14 +105,14 @@ onDraw(()=> {
 function father(x) {
 const father = add([
 	sprite(x),
-	scale(.5),
+	scale(.75),
 	origin("center"),
 	pos(width()/1.1, height()/1.25),
 	area(),
 	"father",
 ])
 }
-father("father")
+father("Rainette")
 onCollide("title", "father", (t, f) =>{
 	destroy(f)
 	w = w + 1
