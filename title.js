@@ -91,7 +91,7 @@ const pret = add([
 	"title",
 
 ])
-const SPEED = 150
+const SPEED = 200
 onDraw(()=> {
 	if(pret.curAnim() !== "run"){
 		pret.play("run")
@@ -116,8 +116,12 @@ father("Rainette")
 onCollide("title", "father", (t, f) =>{
 	destroy(f)
 	w = w + 1
-	wait(1, () =>{
+	if(w > 9){
+		w = 0
+	}
+	wait(.9, () =>{
 		father(ppl[w])
 	})
+
 })
 })
