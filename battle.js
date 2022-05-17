@@ -59,6 +59,7 @@ export{winDeaths};
     var PretzelCount = 5
     let winDeaths = 0
     var bossFight = "false"
+    var lose = "false"
 
     //debug.inspect = true
 
@@ -90,6 +91,7 @@ export{winDeaths};
         PretzelCount = 5
         winDeaths = 0
         bossFight = "false"
+        lose = "false"
 
 
     layers(['background', 'wall', 'obj', 'top', 'bio'], 'wall')
@@ -371,7 +373,9 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             go("lose")
         }
         if(bossFight == "true"){
-            wHealth = wHealth - 4
+            lose = "true"
+            music2.pause()
+            go("lose")
         }
     })
 
@@ -916,7 +920,7 @@ function wave10(){
         winDeaths = winDeaths + 1
       //  PretzelCount = "false"
     }
-    if(winDeaths === 17){
+    if(winDeaths === 17 && lose == "false"){
          PretzelCountTF = "false"
         go('win')
     }
