@@ -193,7 +193,7 @@ let texPowerCollide = function texPowerCollide(){
                 e.color = rgb(251,139,35)
             })
         wait(.75, () => {
-            e.hurt(1)
+            e.hurt(.5)
             e.text = e.hp()
             e.color = rgb(300,0,0)
             wait(.1, ()=>{
@@ -201,7 +201,7 @@ let texPowerCollide = function texPowerCollide(){
             })
         })
         wait(1.5, () => {
-            e.hurt(1)
+            e.hurt(.5)
             e.text = e.hp()
             e.color = rgb(300,0,0)
             wait(.1, ()=>{
@@ -209,7 +209,7 @@ let texPowerCollide = function texPowerCollide(){
             })
         })
         wait(2.25, () => {
-            e.hurt(1)
+            e.hurt(.5)
             e.text = e.hp()
             e.color = rgb(300,0,0)
             wait(.1, ()=>{
@@ -218,7 +218,7 @@ let texPowerCollide = function texPowerCollide(){
         })
 
         wait(3, () => {
-            e.hurt(1)
+            e.hurt(.5)
             e.text = e.hp()
             e.color = rgb(300,0,0)
             wait(.1, ()=>{

@@ -341,7 +341,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
             sprite("pretzel"),
             area({
                 width: 10,
-                height: 15,
+                height: 25,
             }),
             pos(0, rand(35, height()-30)),
             layer("top"),
