@@ -22,6 +22,7 @@ loadSound("musicC", "music/sacrafice.wav");
 
 
 export {pretzelSpeed};
+export {pretzelDeaths}
 
 
 
@@ -99,6 +100,15 @@ export {pretzelSpeed};
     add([sprite("background", { width: width(), height: height() })
     ]);
 
+    const lag = add([
+        rect(1, height()),
+        pos(-10, height()/2),
+        origin("center"),
+        layer("background"),
+        area(),
+        "lag",
+    ])
+
 
     const wlhealth = add([
         text(),
@@ -106,6 +116,7 @@ export {pretzelSpeed};
         pos(width()/1.2, height()/18),
         layer("bio"),
         origin("center"),
+        scale(2),
         
     ])
 
@@ -389,6 +400,7 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
          
            e.text = e.hp()     
     })
+    
 
     onCollide("bullet", "boss", (b, e) => {
  
@@ -417,6 +429,11 @@ addChild("Lars", width()/1.035, height() / 2 - KPOS, ()=> {sac(width()/1.035, he
         destroy(e)
         music2.pause()
         go("lose")
+    })
+
+    onCollide("bullet", "lag", (b) => {
+        destroy(b)
+        console.log("work")
     })
 
 
