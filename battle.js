@@ -14,6 +14,7 @@ import{texPowerCollide} from "./powers.js"
 import{rainettePowerCollide} from "./powers.js"
 import{rainaPowerCollide} from "./powers.js"
 import{bartholomewPowerCollide} from "./powers.js"
+import{ivyPowerCollide} from "./powers.js"
 
 //sounds
 loadSound("shot","music/shot.mp3");
@@ -682,6 +683,7 @@ function death (name){
     rainettePowerCollide()
     rainaPowerCollide()
     bartholomewPowerCollide()
+    ivyPowerCollide()
   
 }
 

@@ -99,14 +99,14 @@ let ivyPowers = function ivyPowers(){
     add([
         rect(width()/1.225,height()),
         pos(width()/2.475,height()/2),
-        color(149,206,214),
+        color(127,1,254),
         area(),
         opacity(.5),
         origin("center"),
         area(),
         lifespan(.1),
         layer("wall"),
-        'ivyspowerup',
+        'ivypowerup',
         play("poisinspell"),
     ])
 }
@@ -148,8 +148,8 @@ let bartholomewPowers = function bartholomewPowers(){
        pos(width()/2.475, height()/2),
         color(220,220,220),
         area({
-            width: 20,
-            height: 20,
+            width: 50,
+            height: 25,
         }),
         opacity(.5),
         origin("center"),
@@ -257,6 +257,49 @@ let bartholomewPowerCollide = function bartholomewPowerCollide(){
     })
 }
 
+let ivyPowerCollide = function ivyPowerCollide(){
+    onCollide('enemy','ivypowerup', (e)=>{
+        e.speed = e.speed / 4
+        wait(.1, ()=>{
+            e.color = rgb(127,1,254)
+        })
+    wait(1, () => {
+        e.hurt(e.hp()/2)
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+        wait(.1, ()=>{
+            e.color = rgb(127,1,254)
+        })
+    })
+    wait(2, () => {
+        e.hurt(e.hp()/2)
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+        wait(.1, ()=>{
+            e.color = rgb(127,1,254)
+        })
+    })
+    wait(3, () => {
+        e.hurt(e.hp()/2)
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+        wait(.1, ()=>{
+            e.color = rgb(127,1,254)
+        })
+    })
+
+    wait(4, () => {
+        e.hurt(e.hp()/2)
+        e.text = e.hp()
+        e.color = rgb(300,0,0)
+        wait(.1, ()=>{
+            e.color = rgb(127,1,254)
+        })
+    })
+        
+    })
+}
+
 
 
 
@@ -269,4 +312,4 @@ let bartholomewPowerCollide = function bartholomewPowerCollide(){
 
 export{larsPowers, texPowers,shelldonPowers, rainettePowers, rainaPowers, ivyPowers, 
     dwaynePowers, shuihaiziPowers, bartholomewPowers, shelldonPowerCollide, larsPowerCollide, 
-    texPowerCollide, rainettePowerCollide, rainaPowerCollide, bartholomewPowerCollide, PTIME_COUNT};
+    texPowerCollide, rainettePowerCollide, rainaPowerCollide, bartholomewPowerCollide, ivyPowerCollide, PTIME_COUNT};
